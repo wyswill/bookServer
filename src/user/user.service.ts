@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { user } from '@src/rpc/bundle';
+import { readerTypeConf } from '@src/util/const';
 import _ from 'lodash';
 import { DbService } from './../db/db.service';
 import { TB_Reader } from './../db/entitys/TB_Reader.entity';
@@ -32,15 +33,16 @@ export class UserService {
     if (_rdType) rdType = _rdType;
     else {
       rdType = new TB_ReaderType();
-      Object.assign(rdType, {
-        rdType: _.random(1000, 99999),
-        rdTypeName: data.rdType,
-        CanLendQty: 100,
-        CanLendDay: 100,
-        CanContinueTimes: 100,
-        PunishRate: 0.05,
-        DateValid: 1,
-      });
+      Object.assign(
+        rdType,
+        {
+          rdType: _.random(1000, 99999),
+          rdTypeName: data.rdType,
+          PunishRate: 0.05,
+          DateValid: 1,
+        },
+        readerTypeConf[data.rdType],
+      );
     }
     const userInfo = Object.assign(data, {
       rdID: _.random(1000, 99999),
@@ -53,7 +55,6 @@ export class UserService {
     //@ts-ignore
     return new user.userBaseRsp({ code: 0, msg: '注册成功', data: userInfo });
   }
-
   async findUserById({ rdID }: user.IqueryUserByIdReq): Promise<TB_Reader> {
     const {
       db: {

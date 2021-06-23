@@ -1,6 +1,13 @@
-/*
- * @LastEditors: wyswill
- * @Description: 
- * @Date: 2021-06-10 13:50:56
- * @LastEditTime: 2021-06-10 13:50:56
- */
+import { comm } from '@src/rpc/bundle';
+export const readerTypeConf = {
+  [comm.UserInfo.rdTypes.teacher]: {
+    CanLendQty: 15,
+    CanLendDay: 90,
+    CanContinueTimes: 100,
+  },
+  [comm.UserInfo.rdTypes.student]: {
+    CanLendQty: 8,
+    CanLendDay: 30,
+    CanContinueTimes: 30,
+  },
+};
