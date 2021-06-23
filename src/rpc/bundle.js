@@ -1305,7 +1305,9 @@ $root.user = (function() {
          * Properties of a LoginRsp.
          * @memberof user
          * @interface ILoginRsp
-         * @property {comm.IUserInfo} userinfo LoginRsp userinfo
+         * @property {number} code LoginRsp code
+         * @property {string} msg LoginRsp msg
+         * @property {comm.IUserInfo} data LoginRsp data
          */
 
         /**
@@ -1324,12 +1326,28 @@ $root.user = (function() {
         }
 
         /**
-         * LoginRsp userinfo.
-         * @member {comm.IUserInfo} userinfo
+         * LoginRsp code.
+         * @member {number} code
          * @memberof user.LoginRsp
          * @instance
          */
-        LoginRsp.prototype.userinfo = null;
+        LoginRsp.prototype.code = 0;
+
+        /**
+         * LoginRsp msg.
+         * @member {string} msg
+         * @memberof user.LoginRsp
+         * @instance
+         */
+        LoginRsp.prototype.msg = "";
+
+        /**
+         * LoginRsp data.
+         * @member {comm.IUserInfo} data
+         * @memberof user.LoginRsp
+         * @instance
+         */
+        LoginRsp.prototype.data = null;
 
         /**
          * Creates a new LoginRsp instance using the specified properties.
@@ -1355,7 +1373,9 @@ $root.user = (function() {
         LoginRsp.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            $root.comm.UserInfo.encode(message.userinfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            $root.comm.UserInfo.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -1391,15 +1411,25 @@ $root.user = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.userinfo = $root.comm.UserInfo.decode(reader, reader.uint32());
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = $root.comm.UserInfo.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
                     break;
                 }
             }
-            if (!message.hasOwnProperty("userinfo"))
-                throw $util.ProtocolError("missing required 'userinfo'", { instance: message });
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            if (!message.hasOwnProperty("data"))
+                throw $util.ProtocolError("missing required 'data'", { instance: message });
             return message;
         };
 
@@ -1430,10 +1460,14 @@ $root.user = (function() {
         LoginRsp.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
             {
-                var error = $root.comm.UserInfo.verify(message.userinfo);
+                var error = $root.comm.UserInfo.verify(message.data);
                 if (error)
-                    return "userinfo." + error;
+                    return "data." + error;
             }
             return null;
         };
@@ -1450,10 +1484,14 @@ $root.user = (function() {
             if (object instanceof $root.user.LoginRsp)
                 return object;
             var message = new $root.user.LoginRsp();
-            if (object.userinfo != null) {
-                if (typeof object.userinfo !== "object")
-                    throw TypeError(".user.LoginRsp.userinfo: object expected");
-                message.userinfo = $root.comm.UserInfo.fromObject(object.userinfo);
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".user.LoginRsp.data: object expected");
+                message.data = $root.comm.UserInfo.fromObject(object.data);
             }
             return message;
         };
@@ -1471,10 +1509,17 @@ $root.user = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
-                object.userinfo = null;
-            if (message.userinfo != null && message.hasOwnProperty("userinfo"))
-                object.userinfo = $root.comm.UserInfo.toObject(message.userinfo, options);
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.comm.UserInfo.toObject(message.data, options);
             return object;
         };
 

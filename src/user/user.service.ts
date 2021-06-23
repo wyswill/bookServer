@@ -9,7 +9,16 @@ import { TB_ReaderType } from './../db/entitys/TB_ReaderType.entity';
 @Injectable()
 export class UserService {
   constructor(private readonly db: DbService) {}
-  async login(data: user.ILoginReq): Promise<user.ILoginRsp> {
+  async login({ username, passowrd }: user.ILoginReq): Promise<user.ILoginRsp> {
+    const userInfo = await this.db.RepoMap.TB_Reader.findOne({
+      rdName: username,
+    });
+
+    if (userInfo && passowrd === userInfo.rdPwd) {
+      //@ts-ignore
+      return new user.LoginRsp({ code: 0, msg: '', data: userInfo });
+    }
+
     return;
   }
   async registerUser(data: user.IregisterUserReq): Promise<user.userBaseRsp> {

@@ -508,8 +508,14 @@ export namespace user {
     /** Properties of a LoginRsp. */
     interface ILoginRsp {
 
-        /** LoginRsp userinfo */
-        userinfo: comm.IUserInfo;
+        /** LoginRsp code */
+        code: number;
+
+        /** LoginRsp msg */
+        msg: string;
+
+        /** LoginRsp data */
+        data: comm.IUserInfo;
     }
 
     /** Represents a LoginRsp. */
@@ -521,8 +527,14 @@ export namespace user {
          */
         constructor(properties?: user.ILoginRsp);
 
-        /** LoginRsp userinfo. */
-        public userinfo: comm.IUserInfo;
+        /** LoginRsp code. */
+        public code: number;
+
+        /** LoginRsp msg. */
+        public msg: string;
+
+        /** LoginRsp data. */
+        public data: comm.IUserInfo;
 
         /**
          * Creates a new LoginRsp instance using the specified properties.
