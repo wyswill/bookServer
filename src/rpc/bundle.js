@@ -383,7 +383,7 @@ $root.comm = (function() {
          * @property {number|null} [rdID] UserInfo rdID
          * @property {string|null} [rdName] UserInfo rdName
          * @property {comm.UserInfo.Sex|null} [rdSex] UserInfo rdSex
-         * @property {number|null} [rdType] UserInfo rdType
+         * @property {comm.UserInfo.rdTypes|null} [rdType] UserInfo rdType
          * @property {string|null} [rdDept] UserInfo rdDept
          * @property {string|null} [rdPhone] UserInfo rdPhone
          * @property {string|null} [rdEmail] UserInfo rdEmail
@@ -436,7 +436,7 @@ $root.comm = (function() {
 
         /**
          * UserInfo rdType.
-         * @member {number|null|undefined} rdType
+         * @member {comm.UserInfo.rdTypes|null|undefined} rdType
          * @memberof comm.UserInfo
          * @instance
          */
@@ -841,8 +841,13 @@ $root.comm = (function() {
             }
             if (message.rdType != null && message.hasOwnProperty("rdType")) {
                 properties._rdType = 1;
-                if (!$util.isInteger(message.rdType))
-                    return "rdType: integer expected";
+                switch (message.rdType) {
+                default:
+                    return "rdType: enum value expected";
+                case 1:
+                case 2:
+                    break;
+                }
             }
             if (message.rdDept != null && message.hasOwnProperty("rdDept")) {
                 properties._rdDept = 1;
@@ -918,8 +923,16 @@ $root.comm = (function() {
                 message.rdSex = 2;
                 break;
             }
-            if (object.rdType != null)
-                message.rdType = object.rdType | 0;
+            switch (object.rdType) {
+            case "teacher":
+            case 1:
+                message.rdType = 1;
+                break;
+            case "student":
+            case 2:
+                message.rdType = 2;
+                break;
+            }
             if (object.rdDept != null)
                 message.rdDept = String(object.rdDept);
             if (object.rdPhone != null)
@@ -970,7 +983,7 @@ $root.comm = (function() {
                     object._rdSex = "rdSex";
             }
             if (message.rdType != null && message.hasOwnProperty("rdType")) {
-                object.rdType = message.rdType;
+                object.rdType = options.enums === String ? $root.comm.UserInfo.rdTypes[message.rdType] : message.rdType;
                 if (options.oneofs)
                     object._rdType = "rdType";
             }
@@ -1044,6 +1057,20 @@ $root.comm = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[1] = "boy"] = 1;
             values[valuesById[2] = "girl"] = 2;
+            return values;
+        })();
+
+        /**
+         * rdTypes enum.
+         * @name comm.UserInfo.rdTypes
+         * @enum {number}
+         * @property {number} teacher=1 teacher value
+         * @property {number} student=2 student value
+         */
+        UserInfo.rdTypes = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "teacher"] = 1;
+            values[valuesById[2] = "student"] = 2;
             return values;
         })();
 
@@ -1476,6 +1503,7 @@ $root.user = (function() {
          * @property {string} rdPhone registerUserReq rdPhone
          * @property {string} rdPwd registerUserReq rdPwd
          * @property {string} rdAdminRoles registerUserReq rdAdminRoles
+         * @property {comm.UserInfo.rdTypes} rdType registerUserReq rdType
          * @property {string|null} [rdDept] registerUserReq rdDept
          * @property {string|null} [rdEmail] registerUserReq rdEmail
          * @property {string|null} [rdPhoto] registerUserReq rdPhoto
@@ -1535,6 +1563,14 @@ $root.user = (function() {
          * @instance
          */
         registerUserReq.prototype.rdAdminRoles = "";
+
+        /**
+         * registerUserReq rdType.
+         * @member {comm.UserInfo.rdTypes} rdType
+         * @memberof user.registerUserReq
+         * @instance
+         */
+        registerUserReq.prototype.rdType = 2;
 
         /**
          * registerUserReq rdDept.
@@ -1625,12 +1661,13 @@ $root.user = (function() {
             writer.uint32(/* id 3, wireType 2 =*/26).string(message.rdPhone);
             writer.uint32(/* id 4, wireType 2 =*/34).string(message.rdPwd);
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.rdAdminRoles);
+            writer.uint32(/* id 6, wireType 0 =*/48).int32(message.rdType);
             if (message.rdDept != null && Object.hasOwnProperty.call(message, "rdDept"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.rdDept);
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.rdDept);
             if (message.rdEmail != null && Object.hasOwnProperty.call(message, "rdEmail"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.rdEmail);
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.rdEmail);
             if (message.rdPhoto != null && Object.hasOwnProperty.call(message, "rdPhoto"))
-                writer.uint32(/* id 8, wireType 2 =*/66).string(message.rdPhoto);
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.rdPhoto);
             return writer;
         };
 
@@ -1681,12 +1718,15 @@ $root.user = (function() {
                     message.rdAdminRoles = reader.string();
                     break;
                 case 6:
-                    message.rdDept = reader.string();
+                    message.rdType = reader.int32();
                     break;
                 case 7:
-                    message.rdEmail = reader.string();
+                    message.rdDept = reader.string();
                     break;
                 case 8:
+                    message.rdEmail = reader.string();
+                    break;
+                case 9:
                     message.rdPhoto = reader.string();
                     break;
                 default:
@@ -1704,6 +1744,8 @@ $root.user = (function() {
                 throw $util.ProtocolError("missing required 'rdPwd'", { instance: message });
             if (!message.hasOwnProperty("rdAdminRoles"))
                 throw $util.ProtocolError("missing required 'rdAdminRoles'", { instance: message });
+            if (!message.hasOwnProperty("rdType"))
+                throw $util.ProtocolError("missing required 'rdType'", { instance: message });
             return message;
         };
 
@@ -1750,6 +1792,13 @@ $root.user = (function() {
                 return "rdPwd: string expected";
             if (!$util.isString(message.rdAdminRoles))
                 return "rdAdminRoles: string expected";
+            switch (message.rdType) {
+            default:
+                return "rdType: enum value expected";
+            case 1:
+            case 2:
+                break;
+            }
             if (message.rdDept != null && message.hasOwnProperty("rdDept")) {
                 properties._rdDept = 1;
                 if (!$util.isString(message.rdDept))
@@ -1798,6 +1847,16 @@ $root.user = (function() {
                 message.rdPwd = String(object.rdPwd);
             if (object.rdAdminRoles != null)
                 message.rdAdminRoles = String(object.rdAdminRoles);
+            switch (object.rdType) {
+            case "teacher":
+            case 1:
+                message.rdType = 1;
+                break;
+            case "student":
+            case 2:
+                message.rdType = 2;
+                break;
+            }
             if (object.rdDept != null)
                 message.rdDept = String(object.rdDept);
             if (object.rdEmail != null)
@@ -1826,6 +1885,7 @@ $root.user = (function() {
                 object.rdPhone = "";
                 object.rdPwd = "";
                 object.rdAdminRoles = "";
+                object.rdType = options.enums === String ? "student" : 2;
             }
             if (message.rdName != null && message.hasOwnProperty("rdName"))
                 object.rdName = message.rdName;
@@ -1837,6 +1897,8 @@ $root.user = (function() {
                 object.rdPwd = message.rdPwd;
             if (message.rdAdminRoles != null && message.hasOwnProperty("rdAdminRoles"))
                 object.rdAdminRoles = message.rdAdminRoles;
+            if (message.rdType != null && message.hasOwnProperty("rdType"))
+                object.rdType = options.enums === String ? $root.comm.UserInfo.rdTypes[message.rdType] : message.rdType;
             if (message.rdDept != null && message.hasOwnProperty("rdDept")) {
                 object.rdDept = message.rdDept;
                 if (options.oneofs)

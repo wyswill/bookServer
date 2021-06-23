@@ -10,10 +10,14 @@ message UserInfo {
     boy=1;
     girl=2;
   }
+  enum rdTypes {
+    teacher=1;
+    student=2;
+  }
   optional int32 rdID=1;
   optional string rdName=2;
   optional Sex rdSex=3 [default = boy];
-  optional int32 rdType=4;
+  optional rdTypes rdType=4 [default = student];
   optional string rdDept=5;
   optional string rdPhone=6;
   optional string rdEmail=7;

@@ -16,6 +16,7 @@ async function mainTest() {
     rdPwd: '3123123',
     rdDept: '312312',
     rdAdminRoles: '0',
+    rdType: comm.UserInfo.rdTypes.student,
   });
   console.log(res);
 }

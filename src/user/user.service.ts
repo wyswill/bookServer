@@ -18,14 +18,15 @@ export class UserService {
     const userif = await RepoMap.TB_Reader.findOne({ rdName: data.rdName });
     if (userif) {
       return new user.userBaseRsp({
-        code: -1,
-        msg: '用户存在',
+        code: 0,
+        msg: '注册成功',
         //@ts-ignore
         data: userif,
       });
     }
+    // @ts-ignore
     const _rdType = await RepoMap.TB_ReaderType.findOne({
-      rdTypeName: data.rdName,
+      rdTypeName: data.rdType,
     });
     let rdType;
     if (_rdType) rdType = _rdType;
@@ -33,7 +34,7 @@ export class UserService {
       rdType = new TB_ReaderType();
       Object.assign(rdType, {
         rdType: _.random(1000, 99999),
-        rdTypeName: data.rdName,
+        rdTypeName: data.rdType,
         CanLendQty: 100,
         CanLendDay: 100,
         CanContinueTimes: 100,

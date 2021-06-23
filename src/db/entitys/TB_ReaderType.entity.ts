@@ -1,3 +1,4 @@
+import { comm } from '@src/rpc/bundle';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -8,8 +9,8 @@ export class TB_ReaderType {
   })
   rdType: number;
   @Column({
-    type: 'nvarchar',
-    length: 20,
+    type: 'enum',
+    enum: comm.UserInfo.rdTypes,
     nullable: false,
     comment: '读者类别名称',
   })

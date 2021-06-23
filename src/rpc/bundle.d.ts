@@ -202,7 +202,7 @@ export namespace comm {
         rdSex?: (comm.UserInfo.Sex|null);
 
         /** UserInfo rdType */
-        rdType?: (number|null);
+        rdType?: (comm.UserInfo.rdTypes|null);
 
         /** UserInfo rdDept */
         rdDept?: (string|null);
@@ -251,7 +251,7 @@ export namespace comm {
         public rdSex?: (comm.UserInfo.Sex|null);
 
         /** UserInfo rdType. */
-        public rdType?: (number|null);
+        public rdType?: (comm.UserInfo.rdTypes|null);
 
         /** UserInfo rdDept. */
         public rdDept?: (string|null);
@@ -396,6 +396,12 @@ export namespace comm {
         enum Sex {
             boy = 1,
             girl = 2
+        }
+
+        /** rdTypes enum. */
+        enum rdTypes {
+            teacher = 1,
+            student = 2
         }
     }
 }
@@ -607,6 +613,9 @@ export namespace user {
         /** registerUserReq rdAdminRoles */
         rdAdminRoles: string;
 
+        /** registerUserReq rdType */
+        rdType: comm.UserInfo.rdTypes;
+
         /** registerUserReq rdDept */
         rdDept?: (string|null);
 
@@ -640,6 +649,9 @@ export namespace user {
 
         /** registerUserReq rdAdminRoles. */
         public rdAdminRoles: string;
+
+        /** registerUserReq rdType. */
+        public rdType: comm.UserInfo.rdTypes;
 
         /** registerUserReq rdDept. */
         public rdDept?: (string|null);

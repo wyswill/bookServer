@@ -1,9 +1,11 @@
+import { LogInterceptor } from '@src/log/log.interceptor';
 import { UserService } from './user.service';
-import { Controller } from '@nestjs/common';
+import { Controller, UseInterceptors } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { user } from '@src/rpc/bundle';
 
 @Controller('user')
+@UseInterceptors(new LogInterceptor())
 export class UserController {
   constructor(protected readonly service: UserService) {}
 

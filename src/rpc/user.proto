@@ -16,9 +16,10 @@ message registerUserReq {
   required string rdPhone=3;
   required string rdPwd=4;
   required string rdAdminRoles=5;
-  optional string rdDept=6;
-  optional string rdEmail=7;
-  optional string rdPhoto=8;
+  required comm.UserInfo.rdTypes rdType=6 [default = student];
+  optional string rdDept=7;
+  optional string rdEmail=8;
+  optional string rdPhoto=9;
 }
 message userBaseRsp {
   required int32 code=1;
