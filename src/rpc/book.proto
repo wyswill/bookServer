@@ -1,0 +1,11 @@
+syntax = "proto3";
+package book;
+
+import "comm.proto";
+import "user.proto";
+service book_service {
+  rpc login (user.LoginReq) returns (user.LoginRsp);
+  rpc registerUser (user.registerUserReq) returns (user.userBaseRsp);
+  rpc queryUserById (user.queryUserByIdReq) returns (user.userBaseRsp);
+}
+

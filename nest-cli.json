@@ -1,0 +1,15 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": false,
+    "webpackConfigPath": "webpack.config.js",
+    "assets": [
+      "**/*.proto"
+    ]
+  },
+  "generateOptions": {
+    "spec": false
+  }
+}

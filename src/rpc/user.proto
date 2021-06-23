@@ -1,0 +1,32 @@
+syntax = "proto3";
+package user;
+import "comm.proto";
+
+message LoginReq {
+ required string username=1;
+ required string passowrd=2;
+}
+message LoginRsp {
+  required comm.UserInfo userinfo=1;
+}
+
+message registerUserReq {
+  required string rdName=1;
+  required comm.UserInfo.Sex rdSex=2 [default = boy];
+  required string rdPhone=3;
+  required string rdPwd=4;
+  required string rdAdminRoles=5;
+  optional string rdDept=6;
+  optional string rdEmail=7;
+  optional string rdPhoto=8;
+}
+message userBaseRsp {
+  required int32 code=1;
+  required string msg=2;
+  required comm.UserInfo data=3;
+}
+
+
+message queryUserByIdReq {
+  required int32 rdID=1;
+}

@@ -1,0 +1,20 @@
+version: "3.4"
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-book
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: Library
+      MYSQL_ROOT_PASSWORD: wyswilladmin
+      MYSQL_USER: LibAdmin
+      MYSQL_PASSWORD: 123
+      character-set-server: utf8mb4 
+      collation-server: utf8mb4_unicode_ci
+      default-authentication-plugin: mysql_native_password
+    volumes:
+      - /root/dockerData/mysql:/var/lib/mysql
+

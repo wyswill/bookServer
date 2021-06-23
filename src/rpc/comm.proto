@@ -1,0 +1,26 @@
+syntax = "proto3";
+package comm;
+message baseRsp {
+  required int32 code=1;
+  required string msg=2;
+}
+
+message UserInfo {
+  enum Sex {
+    boy=1;
+    girl=2;
+  }
+  optional int32 rdID=1;
+  optional string rdName=2;
+  optional Sex rdSex=3 [default = boy];
+  optional int32 rdType=4;
+  optional string rdDept=5;
+  optional string rdPhone=6;
+  optional string rdEmail=7;
+  optional string rdDateReg=8;
+  optional string rdPhoto=9;
+  optional string rdStatus=10;
+  optional int32 rdBorrowQty=11;
+  optional string rdPwd=12;
+  optional int32 rdAdminRoles=13;
+}
