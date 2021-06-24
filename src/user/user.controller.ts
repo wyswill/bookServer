@@ -33,5 +33,9 @@ export class UserController {
   async addReaderTypeById(data: user.addReaderTypeByIdReq) {
     return await this.service.addReaderTypeById(data);
   }
+  @GrpcMethod('book_service', 'modiReaderTypeByid')
+  async modiReaderTypeByid(data: user.modiReaderTypeByidReq) {
+    return await this.service.modiReaderTypeByid(data);
+  }
 
 }

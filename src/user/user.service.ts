@@ -135,25 +135,40 @@ export class UserService {
       });
     }
   }
+
+  async findRdTypeById(rdType: number) {
+    const { TB_ReaderType } = this.db.RepoMap;
+    const _type = await TB_ReaderType.findOne({ rdType });
+    if (!_type) {
+      return { code: -1, msg: '类型未找到', data: {} };
+    } else {
+      return { code: 0, msg: '', data: _type };
+    }
+  }
   async addReaderTypeById({
     rdID,
     rdType,
   }: user.addReaderTypeByIdReq): Promise<user.queryUserByIdRsp> {
     const { TB_ReaderType, TB_Reader } = this.db.RepoMap;
-    const { code, data: _user } = await this.findUserById({ rdID });
-    if (code !== 0) {
+    const [userData, typeData] = await Promise.all([
+      this.findUserById({ rdID }),
+      this.findRdTypeById(rdType),
+    ]);
+    if (userData.code !== 0) {
       //@ts-ignore
       return { code: -1, msg: '用户未找到', data: {} };
     }
-    const _type = await TB_ReaderType.findOne({ rdType });
-    if (!_type) {
+    if (typeData.code !== 0) {
       //@ts-ignore
       return { code: -1, msg: '类型未找到', data: {} };
     }
-    _user.rdType = rdType;
+    userData.data.rdType = rdType;
     //@ts-ignore
-    await TB_Reader.save(_user);
+    await TB_Reader.save(userData.data);
     //@ts-ignore
-    return { code: 0, msg: '添加成功', data: _type };
+    return { code: 0, msg: '添加成功', data: typeData.data };
+  }
+  async modiReaderTypeByid(data: user.ImodiReaderTypeByidReq) {
+    
   }
 }
