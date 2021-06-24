@@ -139,9 +139,21 @@ export class UserService {
     rdID,
     rdType,
   }: user.addReaderTypeByIdReq): Promise<user.queryUserByIdRsp> {
-    const { code, data } = await this.findUserById({ rdID });
+    const { TB_ReaderType, TB_Reader } = this.db.RepoMap;
+    const { code, data: _user } = await this.findUserById({ rdID });
     if (code !== 0) {
-      return;
+      //@ts-ignore
+      return { code: -1, msg: '用户未找到', data: {} };
     }
+    const _type = await TB_ReaderType.findOne({ rdType });
+    if (!_type) {
+      //@ts-ignore
+      return { code: -1, msg: '类型未找到', data: {} };
+    }
+    _user.rdType = rdType;
+    //@ts-ignore
+    await TB_Reader.save(_user);
+    //@ts-ignore
+    return { code: 0, msg: '添加成功', data: _type };
   }
 }

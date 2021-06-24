@@ -11,6 +11,7 @@ client.registerUser = promisify(client.registerUser);
 client.queryUserById = promisify(client.queryUserById);
 client.addUserInfo = promisify(client.addUserInfo);
 client.removeUserById = promisify(client.removeUserById);
+client.addReaderTypeById = promisify(client.addReaderTypeById);
 async function mainTest() {
   // const res = await client.registerUser({
   //   rdName: 'wyswill',
@@ -26,10 +27,11 @@ async function mainTest() {
   // const res = await client.addUserInfo({
   //   rdID: 3059,
   //   rdName:"wyswillfasd",
-  //   rdSex:comm.UserInfo.Sex.boy
+  //   rdSex:comm.UserInfo.Sex.boy,
   // });
 
-  const res = await client.removeUserById({ rdID: 3059 });
+  // const res = await client.removeUserById({ rdID: 3059 });
+  const res = await client.addReaderTypeById({ rdID: 3059, rdType: 84959 });
   console.log(res);
 }
 mainTest();
