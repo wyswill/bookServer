@@ -25,4 +25,8 @@ export class UserController {
   async addUserInfo(data: comm.IUserInfo) {
     return await this.service.addUserInfo(data);
   }
+  @GrpcMethod('book_service', 'removeUserById')
+  async removeUserById(data: user.queryUserByIdReq) {
+    return await this.service.removeUserById(data);
+  }
 }

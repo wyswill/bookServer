@@ -40,15 +40,9 @@ message addUserInfoRsp {
   required comm.UserInfo data=3;
 }
 
-message removeUserByIdReq {
-  required string rdId=1;
-  required string rmRdId=2;
-}
-
 message removeUserByIdRsp {
   required int32 code=1;
   required string msg=2;
-  optional bool data=3;
 }
 
 message queryUserByIdRsp {

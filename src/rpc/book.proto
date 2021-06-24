@@ -9,7 +9,7 @@ service book_service {
   rpc registerUser (user.registerUserReq) returns (user.userBaseRsp);
   rpc queryUserById (user.queryUserByIdReq) returns (user.userBaseRsp);
   rpc addUserInfo (comm.UserInfo) returns (user.addUserInfoRsp);
-  rpc removeUserById (user.removeUserByIdReq) returns (user.removeUserByIdRsp);
+  rpc removeUserById (user.queryUserByIdReq) returns (user.removeUserByIdRsp);
 // 读者类别
   rpc addReaderTypeById (user.queryUserByIdReq) returns (user.queryUserByIdRsp);
   rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);

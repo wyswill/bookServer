@@ -10,6 +10,7 @@ const client = rq.getClient<book.book_service>();
 client.registerUser = promisify(client.registerUser);
 client.queryUserById = promisify(client.queryUserById);
 client.addUserInfo = promisify(client.addUserInfo);
+client.removeUserById = promisify(client.removeUserById);
 async function mainTest() {
   // const res = await client.registerUser({
   //   rdName: 'wyswill',
@@ -21,12 +22,14 @@ async function mainTest() {
   //   rdType: comm.UserInfo.rdTypes.student,
   // });
   // const res = await client.queryUserById({ rdID: 30592 });
-  
-  const res = await client.addUserInfo({
-    rdID: 3059,
-    rdName:"wyswillfasd",
-    rdSex:comm.UserInfo.Sex.boy
-  });
+
+  // const res = await client.addUserInfo({
+  //   rdID: 3059,
+  //   rdName:"wyswillfasd",
+  //   rdSex:comm.UserInfo.Sex.boy
+  // });
+
+  const res = await client.removeUserById({ rdID: 12312 });
   console.log(res);
 }
 mainTest();

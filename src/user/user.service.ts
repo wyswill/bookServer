@@ -72,7 +72,7 @@ export class UserService {
         RepoMap: { TB_Reader },
       },
     } = this;
-    const userInfo = await TB_Reader.findOne({ rdID: rdID });
+    const userInfo = await TB_Reader.findOne({ rdID });
     if (userInfo) {
       return new user.userBaseRsp({
         code: 0,
@@ -113,6 +113,25 @@ export class UserService {
         code: -1,
         msg: '修改失败，没有该用户',
         data: {} as unknown as comm.UserInfo,
+      });
+    }
+  }
+
+  async removeUserById({
+    rdID,
+  }: user.queryUserByIdReq): Promise<user.IremoveUserByIdRsp> {
+    let _info = await this.db.RepoMap.TB_Reader.findOne({ rdID });
+    if (_info) {
+      _info.isDel = true;
+      await this.db.RepoMap.TB_Reader.save(_info);
+      return new user.removeUserByIdRsp({
+        code: 0,
+        msg: '删除成功',
+      });
+    } else {
+      return new user.removeUserByIdRsp({
+        code: -1,
+        msg: '删除失败',
       });
     }
   }

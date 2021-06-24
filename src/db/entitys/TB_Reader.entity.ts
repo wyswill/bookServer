@@ -80,4 +80,6 @@ export class TB_Reader {
       '管理角色，0-读者、1-借书证管理、2-图书管理、4-借阅管理、8-系统管理，可组合',
   })
   rdAdminRoles: string;
+  @Column({ type: 'bool', default: false, comment: '是否删除' })
+  isDel: boolean;
 }

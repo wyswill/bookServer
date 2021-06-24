@@ -196,13 +196,13 @@ $root.book = (function() {
          * @function removeUserById
          * @memberof book.book_service
          * @instance
-         * @param {user.IremoveUserByIdReq} request removeUserByIdReq message or plain object
+         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
          * @param {book.book_service.removeUserByIdCallback} callback Node-style callback called with the error, if any, and removeUserByIdRsp
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(book_service.prototype.removeUserById = function removeUserById(request, callback) {
-            return this.rpcCall(removeUserById, $root.user.removeUserByIdReq, $root.user.removeUserByIdRsp, request, callback);
+            return this.rpcCall(removeUserById, $root.user.queryUserByIdReq, $root.user.removeUserByIdRsp, request, callback);
         }, "name", { value: "removeUserById" });
 
         /**
@@ -210,7 +210,7 @@ $root.book = (function() {
          * @function removeUserById
          * @memberof book.book_service
          * @instance
-         * @param {user.IremoveUserByIdReq} request removeUserByIdReq message or plain object
+         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
          * @returns {Promise<user.removeUserByIdRsp>} Promise
          * @variation 2
          */
@@ -3198,216 +3198,6 @@ $root.user = (function() {
         return addUserInfoRsp;
     })();
 
-    user.removeUserByIdReq = (function() {
-
-        /**
-         * Properties of a removeUserByIdReq.
-         * @memberof user
-         * @interface IremoveUserByIdReq
-         * @property {string} rdId removeUserByIdReq rdId
-         * @property {string} rmRdId removeUserByIdReq rmRdId
-         */
-
-        /**
-         * Constructs a new removeUserByIdReq.
-         * @memberof user
-         * @classdesc Represents a removeUserByIdReq.
-         * @implements IremoveUserByIdReq
-         * @constructor
-         * @param {user.IremoveUserByIdReq=} [properties] Properties to set
-         */
-        function removeUserByIdReq(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * removeUserByIdReq rdId.
-         * @member {string} rdId
-         * @memberof user.removeUserByIdReq
-         * @instance
-         */
-        removeUserByIdReq.prototype.rdId = "";
-
-        /**
-         * removeUserByIdReq rmRdId.
-         * @member {string} rmRdId
-         * @memberof user.removeUserByIdReq
-         * @instance
-         */
-        removeUserByIdReq.prototype.rmRdId = "";
-
-        /**
-         * Creates a new removeUserByIdReq instance using the specified properties.
-         * @function create
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {user.IremoveUserByIdReq=} [properties] Properties to set
-         * @returns {user.removeUserByIdReq} removeUserByIdReq instance
-         */
-        removeUserByIdReq.create = function create(properties) {
-            return new removeUserByIdReq(properties);
-        };
-
-        /**
-         * Encodes the specified removeUserByIdReq message. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
-         * @function encode
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {user.IremoveUserByIdReq} message removeUserByIdReq message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        removeUserByIdReq.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.rdId);
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.rmRdId);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified removeUserByIdReq message, length delimited. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {user.IremoveUserByIdReq} message removeUserByIdReq message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        removeUserByIdReq.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a removeUserByIdReq message from the specified reader or buffer.
-         * @function decode
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {user.removeUserByIdReq} removeUserByIdReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        removeUserByIdReq.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.removeUserByIdReq();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1:
-                    message.rdId = reader.string();
-                    break;
-                case 2:
-                    message.rmRdId = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            if (!message.hasOwnProperty("rdId"))
-                throw $util.ProtocolError("missing required 'rdId'", { instance: message });
-            if (!message.hasOwnProperty("rmRdId"))
-                throw $util.ProtocolError("missing required 'rmRdId'", { instance: message });
-            return message;
-        };
-
-        /**
-         * Decodes a removeUserByIdReq message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {user.removeUserByIdReq} removeUserByIdReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        removeUserByIdReq.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a removeUserByIdReq message.
-         * @function verify
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        removeUserByIdReq.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (!$util.isString(message.rdId))
-                return "rdId: string expected";
-            if (!$util.isString(message.rmRdId))
-                return "rmRdId: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a removeUserByIdReq message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {user.removeUserByIdReq} removeUserByIdReq
-         */
-        removeUserByIdReq.fromObject = function fromObject(object) {
-            if (object instanceof $root.user.removeUserByIdReq)
-                return object;
-            var message = new $root.user.removeUserByIdReq();
-            if (object.rdId != null)
-                message.rdId = String(object.rdId);
-            if (object.rmRdId != null)
-                message.rmRdId = String(object.rmRdId);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a removeUserByIdReq message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof user.removeUserByIdReq
-         * @static
-         * @param {user.removeUserByIdReq} message removeUserByIdReq
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        removeUserByIdReq.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.rdId = "";
-                object.rmRdId = "";
-            }
-            if (message.rdId != null && message.hasOwnProperty("rdId"))
-                object.rdId = message.rdId;
-            if (message.rmRdId != null && message.hasOwnProperty("rmRdId"))
-                object.rmRdId = message.rmRdId;
-            return object;
-        };
-
-        /**
-         * Converts this removeUserByIdReq to JSON.
-         * @function toJSON
-         * @memberof user.removeUserByIdReq
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        removeUserByIdReq.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        return removeUserByIdReq;
-    })();
-
     user.removeUserByIdRsp = (function() {
 
         /**
@@ -3416,7 +3206,6 @@ $root.user = (function() {
          * @interface IremoveUserByIdRsp
          * @property {number} code removeUserByIdRsp code
          * @property {string} msg removeUserByIdRsp msg
-         * @property {boolean|null} [data] removeUserByIdRsp data
          */
 
         /**
@@ -3451,28 +3240,6 @@ $root.user = (function() {
         removeUserByIdRsp.prototype.msg = "";
 
         /**
-         * removeUserByIdRsp data.
-         * @member {boolean|null|undefined} data
-         * @memberof user.removeUserByIdRsp
-         * @instance
-         */
-        removeUserByIdRsp.prototype.data = null;
-
-        // OneOf field names bound to virtual getters and setters
-        var $oneOfFields;
-
-        /**
-         * removeUserByIdRsp _data.
-         * @member {"data"|undefined} _data
-         * @memberof user.removeUserByIdRsp
-         * @instance
-         */
-        Object.defineProperty(removeUserByIdRsp.prototype, "_data", {
-            get: $util.oneOfGetter($oneOfFields = ["data"]),
-            set: $util.oneOfSetter($oneOfFields)
-        });
-
-        /**
          * Creates a new removeUserByIdRsp instance using the specified properties.
          * @function create
          * @memberof user.removeUserByIdRsp
@@ -3498,8 +3265,6 @@ $root.user = (function() {
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
-            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
-                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.data);
             return writer;
         };
 
@@ -3540,9 +3305,6 @@ $root.user = (function() {
                 case 2:
                     message.msg = reader.string();
                     break;
-                case 3:
-                    message.data = reader.bool();
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3582,16 +3344,10 @@ $root.user = (function() {
         removeUserByIdRsp.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            var properties = {};
             if (!$util.isInteger(message.code))
                 return "code: integer expected";
             if (!$util.isString(message.msg))
                 return "msg: string expected";
-            if (message.data != null && message.hasOwnProperty("data")) {
-                properties._data = 1;
-                if (typeof message.data !== "boolean")
-                    return "data: boolean expected";
-            }
             return null;
         };
 
@@ -3611,8 +3367,6 @@ $root.user = (function() {
                 message.code = object.code | 0;
             if (object.msg != null)
                 message.msg = String(object.msg);
-            if (object.data != null)
-                message.data = Boolean(object.data);
             return message;
         };
 
@@ -3637,11 +3391,6 @@ $root.user = (function() {
                 object.code = message.code;
             if (message.msg != null && message.hasOwnProperty("msg"))
                 object.msg = message.msg;
-            if (message.data != null && message.hasOwnProperty("data")) {
-                object.data = message.data;
-                if (options.oneofs)
-                    object._data = "data";
-            }
             return object;
         };
 

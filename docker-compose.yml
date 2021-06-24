@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   mysql:
-    image: mysql
+    image: biarms/mysql
     container_name: mysql-book
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
@@ -16,5 +16,6 @@ services:
       collation-server: utf8mb4_unicode_ci
       default-authentication-plugin: mysql_native_password
     volumes:
-      - /root/dockerData/mysql:/var/lib/mysql
+      - /Users/wangyansong/dockerData/mysql:/var/lib/mysql
+      # - /root/dockerData/mysql:/var/lib/mysql
 

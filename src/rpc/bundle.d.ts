@@ -80,17 +80,17 @@ export namespace book {
 
         /**
          * Calls removeUserById.
-         * @param request removeUserByIdReq message or plain object
+         * @param request queryUserByIdReq message or plain object
          * @param callback Node-style callback called with the error, if any, and removeUserByIdRsp
          */
-        public removeUserById(request: user.IremoveUserByIdReq, callback: book.book_service.removeUserByIdCallback): void;
+        public removeUserById(request: user.IqueryUserByIdReq, callback: book.book_service.removeUserByIdCallback): void;
 
         /**
          * Calls removeUserById.
-         * @param request removeUserByIdReq message or plain object
+         * @param request queryUserByIdReq message or plain object
          * @returns Promise
          */
-        public removeUserById(request: user.IremoveUserByIdReq): Promise<user.removeUserByIdRsp>;
+        public removeUserById(request: user.IqueryUserByIdReq): Promise<user.removeUserByIdRsp>;
 
         /**
          * Calls addReaderTypeById.
@@ -1279,102 +1279,6 @@ export namespace user {
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a removeUserByIdReq. */
-    interface IremoveUserByIdReq {
-
-        /** removeUserByIdReq rdId */
-        rdId: string;
-
-        /** removeUserByIdReq rmRdId */
-        rmRdId: string;
-    }
-
-    /** Represents a removeUserByIdReq. */
-    class removeUserByIdReq implements IremoveUserByIdReq {
-
-        /**
-         * Constructs a new removeUserByIdReq.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: user.IremoveUserByIdReq);
-
-        /** removeUserByIdReq rdId. */
-        public rdId: string;
-
-        /** removeUserByIdReq rmRdId. */
-        public rmRdId: string;
-
-        /**
-         * Creates a new removeUserByIdReq instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns removeUserByIdReq instance
-         */
-        public static create(properties?: user.IremoveUserByIdReq): user.removeUserByIdReq;
-
-        /**
-         * Encodes the specified removeUserByIdReq message. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
-         * @param message removeUserByIdReq message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: user.IremoveUserByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified removeUserByIdReq message, length delimited. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
-         * @param message removeUserByIdReq message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: user.IremoveUserByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a removeUserByIdReq message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns removeUserByIdReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.removeUserByIdReq;
-
-        /**
-         * Decodes a removeUserByIdReq message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns removeUserByIdReq
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.removeUserByIdReq;
-
-        /**
-         * Verifies a removeUserByIdReq message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a removeUserByIdReq message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns removeUserByIdReq
-         */
-        public static fromObject(object: { [k: string]: any }): user.removeUserByIdReq;
-
-        /**
-         * Creates a plain object from a removeUserByIdReq message. Also converts values to other types if specified.
-         * @param message removeUserByIdReq
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: user.removeUserByIdReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this removeUserByIdReq to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-    }
-
     /** Properties of a removeUserByIdRsp. */
     interface IremoveUserByIdRsp {
 
@@ -1383,9 +1287,6 @@ export namespace user {
 
         /** removeUserByIdRsp msg */
         msg: string;
-
-        /** removeUserByIdRsp data */
-        data?: (boolean|null);
     }
 
     /** Represents a removeUserByIdRsp. */
@@ -1402,12 +1303,6 @@ export namespace user {
 
         /** removeUserByIdRsp msg. */
         public msg: string;
-
-        /** removeUserByIdRsp data. */
-        public data?: (boolean|null);
-
-        /** removeUserByIdRsp _data. */
-        public _data?: "data";
 
         /**
          * Creates a new removeUserByIdRsp instance using the specified properties.
