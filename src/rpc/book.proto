@@ -11,7 +11,7 @@ service book_service {
   rpc addUserInfo (comm.UserInfo) returns (user.addUserInfoRsp);
   rpc removeUserById (user.queryUserByIdReq) returns (user.removeUserByIdRsp);
 // 读者类别
-  rpc addReaderTypeById (user.queryUserByIdReq) returns (user.queryUserByIdRsp);
+  rpc addReaderTypeById (user.addReaderTypeByIdReq) returns (user.queryUserByIdRsp);
   rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);
 
 // 其他接口

@@ -229,13 +229,13 @@ $root.book = (function() {
          * @function addReaderTypeById
          * @memberof book.book_service
          * @instance
-         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
+         * @param {user.IaddReaderTypeByIdReq} request addReaderTypeByIdReq message or plain object
          * @param {book.book_service.addReaderTypeByIdCallback} callback Node-style callback called with the error, if any, and queryUserByIdRsp
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(book_service.prototype.addReaderTypeById = function addReaderTypeById(request, callback) {
-            return this.rpcCall(addReaderTypeById, $root.user.queryUserByIdReq, $root.user.queryUserByIdRsp, request, callback);
+            return this.rpcCall(addReaderTypeById, $root.user.addReaderTypeByIdReq, $root.user.queryUserByIdRsp, request, callback);
         }, "name", { value: "addReaderTypeById" });
 
         /**
@@ -243,7 +243,7 @@ $root.book = (function() {
          * @function addReaderTypeById
          * @memberof book.book_service
          * @instance
-         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
+         * @param {user.IaddReaderTypeByIdReq} request addReaderTypeByIdReq message or plain object
          * @returns {Promise<user.queryUserByIdRsp>} Promise
          * @variation 2
          */
@@ -3860,6 +3860,216 @@ $root.user = (function() {
         };
 
         return modiReaderTypeByidReq;
+    })();
+
+    user.addReaderTypeByIdReq = (function() {
+
+        /**
+         * Properties of an addReaderTypeByIdReq.
+         * @memberof user
+         * @interface IaddReaderTypeByIdReq
+         * @property {number} rdID addReaderTypeByIdReq rdID
+         * @property {number} rdType addReaderTypeByIdReq rdType
+         */
+
+        /**
+         * Constructs a new addReaderTypeByIdReq.
+         * @memberof user
+         * @classdesc Represents an addReaderTypeByIdReq.
+         * @implements IaddReaderTypeByIdReq
+         * @constructor
+         * @param {user.IaddReaderTypeByIdReq=} [properties] Properties to set
+         */
+        function addReaderTypeByIdReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * addReaderTypeByIdReq rdID.
+         * @member {number} rdID
+         * @memberof user.addReaderTypeByIdReq
+         * @instance
+         */
+        addReaderTypeByIdReq.prototype.rdID = 0;
+
+        /**
+         * addReaderTypeByIdReq rdType.
+         * @member {number} rdType
+         * @memberof user.addReaderTypeByIdReq
+         * @instance
+         */
+        addReaderTypeByIdReq.prototype.rdType = 0;
+
+        /**
+         * Creates a new addReaderTypeByIdReq instance using the specified properties.
+         * @function create
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {user.IaddReaderTypeByIdReq=} [properties] Properties to set
+         * @returns {user.addReaderTypeByIdReq} addReaderTypeByIdReq instance
+         */
+        addReaderTypeByIdReq.create = function create(properties) {
+            return new addReaderTypeByIdReq(properties);
+        };
+
+        /**
+         * Encodes the specified addReaderTypeByIdReq message. Does not implicitly {@link user.addReaderTypeByIdReq.verify|verify} messages.
+         * @function encode
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {user.IaddReaderTypeByIdReq} message addReaderTypeByIdReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addReaderTypeByIdReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rdID);
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.rdType);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified addReaderTypeByIdReq message, length delimited. Does not implicitly {@link user.addReaderTypeByIdReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {user.IaddReaderTypeByIdReq} message addReaderTypeByIdReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addReaderTypeByIdReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an addReaderTypeByIdReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.addReaderTypeByIdReq} addReaderTypeByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addReaderTypeByIdReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.addReaderTypeByIdReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.rdID = reader.int32();
+                    break;
+                case 2:
+                    message.rdType = reader.int32();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("rdID"))
+                throw $util.ProtocolError("missing required 'rdID'", { instance: message });
+            if (!message.hasOwnProperty("rdType"))
+                throw $util.ProtocolError("missing required 'rdType'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes an addReaderTypeByIdReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.addReaderTypeByIdReq} addReaderTypeByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addReaderTypeByIdReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an addReaderTypeByIdReq message.
+         * @function verify
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        addReaderTypeByIdReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.rdID))
+                return "rdID: integer expected";
+            if (!$util.isInteger(message.rdType))
+                return "rdType: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates an addReaderTypeByIdReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.addReaderTypeByIdReq} addReaderTypeByIdReq
+         */
+        addReaderTypeByIdReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.addReaderTypeByIdReq)
+                return object;
+            var message = new $root.user.addReaderTypeByIdReq();
+            if (object.rdID != null)
+                message.rdID = object.rdID | 0;
+            if (object.rdType != null)
+                message.rdType = object.rdType | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an addReaderTypeByIdReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.addReaderTypeByIdReq
+         * @static
+         * @param {user.addReaderTypeByIdReq} message addReaderTypeByIdReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        addReaderTypeByIdReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.rdID = 0;
+                object.rdType = 0;
+            }
+            if (message.rdID != null && message.hasOwnProperty("rdID"))
+                object.rdID = message.rdID;
+            if (message.rdType != null && message.hasOwnProperty("rdType"))
+                object.rdType = message.rdType;
+            return object;
+        };
+
+        /**
+         * Converts this addReaderTypeByIdReq to JSON.
+         * @function toJSON
+         * @memberof user.addReaderTypeByIdReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        addReaderTypeByIdReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return addReaderTypeByIdReq;
     })();
 
     return user;

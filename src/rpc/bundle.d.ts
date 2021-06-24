@@ -94,17 +94,17 @@ export namespace book {
 
         /**
          * Calls addReaderTypeById.
-         * @param request queryUserByIdReq message or plain object
+         * @param request addReaderTypeByIdReq message or plain object
          * @param callback Node-style callback called with the error, if any, and queryUserByIdRsp
          */
-        public addReaderTypeById(request: user.IqueryUserByIdReq, callback: book.book_service.addReaderTypeByIdCallback): void;
+        public addReaderTypeById(request: user.IaddReaderTypeByIdReq, callback: book.book_service.addReaderTypeByIdCallback): void;
 
         /**
          * Calls addReaderTypeById.
-         * @param request queryUserByIdReq message or plain object
+         * @param request addReaderTypeByIdReq message or plain object
          * @returns Promise
          */
-        public addReaderTypeById(request: user.IqueryUserByIdReq): Promise<user.queryUserByIdRsp>;
+        public addReaderTypeById(request: user.IaddReaderTypeByIdReq): Promise<user.queryUserByIdRsp>;
 
         /**
          * Calls modiReaderTypeByid.
@@ -1568,6 +1568,102 @@ export namespace user {
 
         /**
          * Converts this modiReaderTypeByidReq to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an addReaderTypeByIdReq. */
+    interface IaddReaderTypeByIdReq {
+
+        /** addReaderTypeByIdReq rdID */
+        rdID: number;
+
+        /** addReaderTypeByIdReq rdType */
+        rdType: number;
+    }
+
+    /** Represents an addReaderTypeByIdReq. */
+    class addReaderTypeByIdReq implements IaddReaderTypeByIdReq {
+
+        /**
+         * Constructs a new addReaderTypeByIdReq.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IaddReaderTypeByIdReq);
+
+        /** addReaderTypeByIdReq rdID. */
+        public rdID: number;
+
+        /** addReaderTypeByIdReq rdType. */
+        public rdType: number;
+
+        /**
+         * Creates a new addReaderTypeByIdReq instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns addReaderTypeByIdReq instance
+         */
+        public static create(properties?: user.IaddReaderTypeByIdReq): user.addReaderTypeByIdReq;
+
+        /**
+         * Encodes the specified addReaderTypeByIdReq message. Does not implicitly {@link user.addReaderTypeByIdReq.verify|verify} messages.
+         * @param message addReaderTypeByIdReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IaddReaderTypeByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified addReaderTypeByIdReq message, length delimited. Does not implicitly {@link user.addReaderTypeByIdReq.verify|verify} messages.
+         * @param message addReaderTypeByIdReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IaddReaderTypeByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an addReaderTypeByIdReq message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns addReaderTypeByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.addReaderTypeByIdReq;
+
+        /**
+         * Decodes an addReaderTypeByIdReq message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns addReaderTypeByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.addReaderTypeByIdReq;
+
+        /**
+         * Verifies an addReaderTypeByIdReq message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an addReaderTypeByIdReq message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns addReaderTypeByIdReq
+         */
+        public static fromObject(object: { [k: string]: any }): user.addReaderTypeByIdReq;
+
+        /**
+         * Creates a plain object from an addReaderTypeByIdReq message. Also converts values to other types if specified.
+         * @param message addReaderTypeByIdReq
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.addReaderTypeByIdReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this addReaderTypeByIdReq to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

@@ -29,4 +29,9 @@ export class UserController {
   async removeUserById(data: user.queryUserByIdReq) {
     return await this.service.removeUserById(data);
   }
+  @GrpcMethod('book_service', 'addReaderTypeById')
+  async addReaderTypeById(data: user.addReaderTypeByIdReq) {
+    return await this.service.addReaderTypeById(data);
+  }
+
 }

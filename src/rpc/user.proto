@@ -53,5 +53,10 @@ message queryUserByIdRsp {
 
 message modiReaderTypeByidReq {
  required int32 rdID=1;
-required comm.readerType rdType=2;
+ required comm.readerType rdType=2;
+}
+
+message addReaderTypeByIdReq {
+ required int32 rdID=1;
+ required int32 rdType=2;
 }

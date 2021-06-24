@@ -89,7 +89,6 @@ export class UserService {
       });
     }
   }
-
   async addUserInfo(userInfo: comm.IUserInfo): Promise<user.IaddUserInfoRsp> {
     const { TB_Reader } = this.db.RepoMap;
     if (!userInfo.rdID) {
@@ -116,7 +115,6 @@ export class UserService {
       });
     }
   }
-
   async removeUserById(
     info: user.queryUserByIdReq,
   ): Promise<user.IremoveUserByIdRsp> {
@@ -135,6 +133,15 @@ export class UserService {
         code: -1,
         msg: '删除失败',
       });
+    }
+  }
+  async addReaderTypeById({
+    rdID,
+    rdType,
+  }: user.addReaderTypeByIdReq): Promise<user.queryUserByIdRsp> {
+    const { code, data } = await this.findUserById({ rdID });
+    if (code !== 0) {
+      return;
     }
   }
 }
