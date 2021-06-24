@@ -149,6 +149,138 @@ $root.book = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link book.book_service#addUserInfo}.
+         * @memberof book.book_service
+         * @typedef addUserInfoCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {user.addUserInfoRsp} [response] addUserInfoRsp
+         */
+
+        /**
+         * Calls addUserInfo.
+         * @function addUserInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IUserInfo} request UserInfo message or plain object
+         * @param {book.book_service.addUserInfoCallback} callback Node-style callback called with the error, if any, and addUserInfoRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.addUserInfo = function addUserInfo(request, callback) {
+            return this.rpcCall(addUserInfo, $root.comm.UserInfo, $root.user.addUserInfoRsp, request, callback);
+        }, "name", { value: "addUserInfo" });
+
+        /**
+         * Calls addUserInfo.
+         * @function addUserInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IUserInfo} request UserInfo message or plain object
+         * @returns {Promise<user.addUserInfoRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#removeUserById}.
+         * @memberof book.book_service
+         * @typedef removeUserByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {user.removeUserByIdRsp} [response] removeUserByIdRsp
+         */
+
+        /**
+         * Calls removeUserById.
+         * @function removeUserById
+         * @memberof book.book_service
+         * @instance
+         * @param {user.IremoveUserByIdReq} request removeUserByIdReq message or plain object
+         * @param {book.book_service.removeUserByIdCallback} callback Node-style callback called with the error, if any, and removeUserByIdRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.removeUserById = function removeUserById(request, callback) {
+            return this.rpcCall(removeUserById, $root.user.removeUserByIdReq, $root.user.removeUserByIdRsp, request, callback);
+        }, "name", { value: "removeUserById" });
+
+        /**
+         * Calls removeUserById.
+         * @function removeUserById
+         * @memberof book.book_service
+         * @instance
+         * @param {user.IremoveUserByIdReq} request removeUserByIdReq message or plain object
+         * @returns {Promise<user.removeUserByIdRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#addReaderTypeById}.
+         * @memberof book.book_service
+         * @typedef addReaderTypeByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {user.queryUserByIdRsp} [response] queryUserByIdRsp
+         */
+
+        /**
+         * Calls addReaderTypeById.
+         * @function addReaderTypeById
+         * @memberof book.book_service
+         * @instance
+         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
+         * @param {book.book_service.addReaderTypeByIdCallback} callback Node-style callback called with the error, if any, and queryUserByIdRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.addReaderTypeById = function addReaderTypeById(request, callback) {
+            return this.rpcCall(addReaderTypeById, $root.user.queryUserByIdReq, $root.user.queryUserByIdRsp, request, callback);
+        }, "name", { value: "addReaderTypeById" });
+
+        /**
+         * Calls addReaderTypeById.
+         * @function addReaderTypeById
+         * @memberof book.book_service
+         * @instance
+         * @param {user.IqueryUserByIdReq} request queryUserByIdReq message or plain object
+         * @returns {Promise<user.queryUserByIdRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#modiReaderTypeByid}.
+         * @memberof book.book_service
+         * @typedef modiReaderTypeByidCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {user.queryUserByIdRsp} [response] queryUserByIdRsp
+         */
+
+        /**
+         * Calls modiReaderTypeByid.
+         * @function modiReaderTypeByid
+         * @memberof book.book_service
+         * @instance
+         * @param {user.ImodiReaderTypeByidReq} request modiReaderTypeByidReq message or plain object
+         * @param {book.book_service.modiReaderTypeByidCallback} callback Node-style callback called with the error, if any, and queryUserByIdRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.modiReaderTypeByid = function modiReaderTypeByid(request, callback) {
+            return this.rpcCall(modiReaderTypeByid, $root.user.modiReaderTypeByidReq, $root.user.queryUserByIdRsp, request, callback);
+        }, "name", { value: "modiReaderTypeByid" });
+
+        /**
+         * Calls modiReaderTypeByid.
+         * @function modiReaderTypeByid
+         * @memberof book.book_service
+         * @instance
+         * @param {user.ImodiReaderTypeByidReq} request modiReaderTypeByidReq message or plain object
+         * @returns {Promise<user.queryUserByIdRsp>} Promise
+         * @variation 2
+         */
+
         return book_service;
     })();
 
@@ -1075,6 +1207,433 @@ $root.comm = (function() {
         })();
 
         return UserInfo;
+    })();
+
+    comm.readerType = (function() {
+
+        /**
+         * Properties of a readerType.
+         * @memberof comm
+         * @interface IreaderType
+         * @property {number|null} [CanLendQty] readerType CanLendQty
+         * @property {number|null} [CanLendDay] readerType CanLendDay
+         * @property {number|null} [CanContinueTimes] readerType CanContinueTimes
+         * @property {number|null} [PunishRate] readerType PunishRate
+         * @property {number|null} [DateValid] readerType DateValid
+         * @property {number|null} [rdType] readerType rdType
+         * @property {string|null} [rdTypeName] readerType rdTypeName
+         */
+
+        /**
+         * Constructs a new readerType.
+         * @memberof comm
+         * @classdesc Represents a readerType.
+         * @implements IreaderType
+         * @constructor
+         * @param {comm.IreaderType=} [properties] Properties to set
+         */
+        function readerType(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * readerType CanLendQty.
+         * @member {number|null|undefined} CanLendQty
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.CanLendQty = null;
+
+        /**
+         * readerType CanLendDay.
+         * @member {number|null|undefined} CanLendDay
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.CanLendDay = null;
+
+        /**
+         * readerType CanContinueTimes.
+         * @member {number|null|undefined} CanContinueTimes
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.CanContinueTimes = null;
+
+        /**
+         * readerType PunishRate.
+         * @member {number|null|undefined} PunishRate
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.PunishRate = null;
+
+        /**
+         * readerType DateValid.
+         * @member {number|null|undefined} DateValid
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.DateValid = null;
+
+        /**
+         * readerType rdType.
+         * @member {number|null|undefined} rdType
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.rdType = null;
+
+        /**
+         * readerType rdTypeName.
+         * @member {string|null|undefined} rdTypeName
+         * @memberof comm.readerType
+         * @instance
+         */
+        readerType.prototype.rdTypeName = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * readerType _CanLendQty.
+         * @member {"CanLendQty"|undefined} _CanLendQty
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_CanLendQty", {
+            get: $util.oneOfGetter($oneOfFields = ["CanLendQty"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _CanLendDay.
+         * @member {"CanLendDay"|undefined} _CanLendDay
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_CanLendDay", {
+            get: $util.oneOfGetter($oneOfFields = ["CanLendDay"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _CanContinueTimes.
+         * @member {"CanContinueTimes"|undefined} _CanContinueTimes
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_CanContinueTimes", {
+            get: $util.oneOfGetter($oneOfFields = ["CanContinueTimes"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _PunishRate.
+         * @member {"PunishRate"|undefined} _PunishRate
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_PunishRate", {
+            get: $util.oneOfGetter($oneOfFields = ["PunishRate"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _DateValid.
+         * @member {"DateValid"|undefined} _DateValid
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_DateValid", {
+            get: $util.oneOfGetter($oneOfFields = ["DateValid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _rdType.
+         * @member {"rdType"|undefined} _rdType
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_rdType", {
+            get: $util.oneOfGetter($oneOfFields = ["rdType"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * readerType _rdTypeName.
+         * @member {"rdTypeName"|undefined} _rdTypeName
+         * @memberof comm.readerType
+         * @instance
+         */
+        Object.defineProperty(readerType.prototype, "_rdTypeName", {
+            get: $util.oneOfGetter($oneOfFields = ["rdTypeName"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new readerType instance using the specified properties.
+         * @function create
+         * @memberof comm.readerType
+         * @static
+         * @param {comm.IreaderType=} [properties] Properties to set
+         * @returns {comm.readerType} readerType instance
+         */
+        readerType.create = function create(properties) {
+            return new readerType(properties);
+        };
+
+        /**
+         * Encodes the specified readerType message. Does not implicitly {@link comm.readerType.verify|verify} messages.
+         * @function encode
+         * @memberof comm.readerType
+         * @static
+         * @param {comm.IreaderType} message readerType message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        readerType.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.CanLendQty != null && Object.hasOwnProperty.call(message, "CanLendQty"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.CanLendQty);
+            if (message.CanLendDay != null && Object.hasOwnProperty.call(message, "CanLendDay"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.CanLendDay);
+            if (message.CanContinueTimes != null && Object.hasOwnProperty.call(message, "CanContinueTimes"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.CanContinueTimes);
+            if (message.PunishRate != null && Object.hasOwnProperty.call(message, "PunishRate"))
+                writer.uint32(/* id 4, wireType 5 =*/37).float(message.PunishRate);
+            if (message.DateValid != null && Object.hasOwnProperty.call(message, "DateValid"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.DateValid);
+            if (message.rdType != null && Object.hasOwnProperty.call(message, "rdType"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.rdType);
+            if (message.rdTypeName != null && Object.hasOwnProperty.call(message, "rdTypeName"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.rdTypeName);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified readerType message, length delimited. Does not implicitly {@link comm.readerType.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof comm.readerType
+         * @static
+         * @param {comm.IreaderType} message readerType message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        readerType.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a readerType message from the specified reader or buffer.
+         * @function decode
+         * @memberof comm.readerType
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {comm.readerType} readerType
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        readerType.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.comm.readerType();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.CanLendQty = reader.int32();
+                    break;
+                case 2:
+                    message.CanLendDay = reader.int32();
+                    break;
+                case 3:
+                    message.CanContinueTimes = reader.int32();
+                    break;
+                case 4:
+                    message.PunishRate = reader.float();
+                    break;
+                case 5:
+                    message.DateValid = reader.int32();
+                    break;
+                case 6:
+                    message.rdType = reader.int32();
+                    break;
+                case 7:
+                    message.rdTypeName = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a readerType message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof comm.readerType
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {comm.readerType} readerType
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        readerType.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a readerType message.
+         * @function verify
+         * @memberof comm.readerType
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        readerType.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.CanLendQty != null && message.hasOwnProperty("CanLendQty")) {
+                properties._CanLendQty = 1;
+                if (!$util.isInteger(message.CanLendQty))
+                    return "CanLendQty: integer expected";
+            }
+            if (message.CanLendDay != null && message.hasOwnProperty("CanLendDay")) {
+                properties._CanLendDay = 1;
+                if (!$util.isInteger(message.CanLendDay))
+                    return "CanLendDay: integer expected";
+            }
+            if (message.CanContinueTimes != null && message.hasOwnProperty("CanContinueTimes")) {
+                properties._CanContinueTimes = 1;
+                if (!$util.isInteger(message.CanContinueTimes))
+                    return "CanContinueTimes: integer expected";
+            }
+            if (message.PunishRate != null && message.hasOwnProperty("PunishRate")) {
+                properties._PunishRate = 1;
+                if (typeof message.PunishRate !== "number")
+                    return "PunishRate: number expected";
+            }
+            if (message.DateValid != null && message.hasOwnProperty("DateValid")) {
+                properties._DateValid = 1;
+                if (!$util.isInteger(message.DateValid))
+                    return "DateValid: integer expected";
+            }
+            if (message.rdType != null && message.hasOwnProperty("rdType")) {
+                properties._rdType = 1;
+                if (!$util.isInteger(message.rdType))
+                    return "rdType: integer expected";
+            }
+            if (message.rdTypeName != null && message.hasOwnProperty("rdTypeName")) {
+                properties._rdTypeName = 1;
+                if (!$util.isString(message.rdTypeName))
+                    return "rdTypeName: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a readerType message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof comm.readerType
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {comm.readerType} readerType
+         */
+        readerType.fromObject = function fromObject(object) {
+            if (object instanceof $root.comm.readerType)
+                return object;
+            var message = new $root.comm.readerType();
+            if (object.CanLendQty != null)
+                message.CanLendQty = object.CanLendQty | 0;
+            if (object.CanLendDay != null)
+                message.CanLendDay = object.CanLendDay | 0;
+            if (object.CanContinueTimes != null)
+                message.CanContinueTimes = object.CanContinueTimes | 0;
+            if (object.PunishRate != null)
+                message.PunishRate = Number(object.PunishRate);
+            if (object.DateValid != null)
+                message.DateValid = object.DateValid | 0;
+            if (object.rdType != null)
+                message.rdType = object.rdType | 0;
+            if (object.rdTypeName != null)
+                message.rdTypeName = String(object.rdTypeName);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a readerType message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof comm.readerType
+         * @static
+         * @param {comm.readerType} message readerType
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        readerType.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (message.CanLendQty != null && message.hasOwnProperty("CanLendQty")) {
+                object.CanLendQty = message.CanLendQty;
+                if (options.oneofs)
+                    object._CanLendQty = "CanLendQty";
+            }
+            if (message.CanLendDay != null && message.hasOwnProperty("CanLendDay")) {
+                object.CanLendDay = message.CanLendDay;
+                if (options.oneofs)
+                    object._CanLendDay = "CanLendDay";
+            }
+            if (message.CanContinueTimes != null && message.hasOwnProperty("CanContinueTimes")) {
+                object.CanContinueTimes = message.CanContinueTimes;
+                if (options.oneofs)
+                    object._CanContinueTimes = "CanContinueTimes";
+            }
+            if (message.PunishRate != null && message.hasOwnProperty("PunishRate")) {
+                object.PunishRate = options.json && !isFinite(message.PunishRate) ? String(message.PunishRate) : message.PunishRate;
+                if (options.oneofs)
+                    object._PunishRate = "PunishRate";
+            }
+            if (message.DateValid != null && message.hasOwnProperty("DateValid")) {
+                object.DateValid = message.DateValid;
+                if (options.oneofs)
+                    object._DateValid = "DateValid";
+            }
+            if (message.rdType != null && message.hasOwnProperty("rdType")) {
+                object.rdType = message.rdType;
+                if (options.oneofs)
+                    object._rdType = "rdType";
+            }
+            if (message.rdTypeName != null && message.hasOwnProperty("rdTypeName")) {
+                object.rdTypeName = message.rdTypeName;
+                if (options.oneofs)
+                    object._rdTypeName = "rdTypeName";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this readerType to JSON.
+         * @function toJSON
+         * @memberof comm.readerType
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        readerType.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return readerType;
     })();
 
     return comm;
@@ -2399,6 +2958,1159 @@ $root.user = (function() {
         };
 
         return queryUserByIdReq;
+    })();
+
+    user.addUserInfoRsp = (function() {
+
+        /**
+         * Properties of an addUserInfoRsp.
+         * @memberof user
+         * @interface IaddUserInfoRsp
+         * @property {number} code addUserInfoRsp code
+         * @property {string} msg addUserInfoRsp msg
+         * @property {comm.IUserInfo} data addUserInfoRsp data
+         */
+
+        /**
+         * Constructs a new addUserInfoRsp.
+         * @memberof user
+         * @classdesc Represents an addUserInfoRsp.
+         * @implements IaddUserInfoRsp
+         * @constructor
+         * @param {user.IaddUserInfoRsp=} [properties] Properties to set
+         */
+        function addUserInfoRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * addUserInfoRsp code.
+         * @member {number} code
+         * @memberof user.addUserInfoRsp
+         * @instance
+         */
+        addUserInfoRsp.prototype.code = 0;
+
+        /**
+         * addUserInfoRsp msg.
+         * @member {string} msg
+         * @memberof user.addUserInfoRsp
+         * @instance
+         */
+        addUserInfoRsp.prototype.msg = "";
+
+        /**
+         * addUserInfoRsp data.
+         * @member {comm.IUserInfo} data
+         * @memberof user.addUserInfoRsp
+         * @instance
+         */
+        addUserInfoRsp.prototype.data = null;
+
+        /**
+         * Creates a new addUserInfoRsp instance using the specified properties.
+         * @function create
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {user.IaddUserInfoRsp=} [properties] Properties to set
+         * @returns {user.addUserInfoRsp} addUserInfoRsp instance
+         */
+        addUserInfoRsp.create = function create(properties) {
+            return new addUserInfoRsp(properties);
+        };
+
+        /**
+         * Encodes the specified addUserInfoRsp message. Does not implicitly {@link user.addUserInfoRsp.verify|verify} messages.
+         * @function encode
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {user.IaddUserInfoRsp} message addUserInfoRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addUserInfoRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            $root.comm.UserInfo.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified addUserInfoRsp message, length delimited. Does not implicitly {@link user.addUserInfoRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {user.IaddUserInfoRsp} message addUserInfoRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addUserInfoRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an addUserInfoRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.addUserInfoRsp} addUserInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addUserInfoRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.addUserInfoRsp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = $root.comm.UserInfo.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            if (!message.hasOwnProperty("data"))
+                throw $util.ProtocolError("missing required 'data'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes an addUserInfoRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.addUserInfoRsp} addUserInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addUserInfoRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an addUserInfoRsp message.
+         * @function verify
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        addUserInfoRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
+            {
+                var error = $root.comm.UserInfo.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an addUserInfoRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.addUserInfoRsp} addUserInfoRsp
+         */
+        addUserInfoRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.addUserInfoRsp)
+                return object;
+            var message = new $root.user.addUserInfoRsp();
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".user.addUserInfoRsp.data: object expected");
+                message.data = $root.comm.UserInfo.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an addUserInfoRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.addUserInfoRsp
+         * @static
+         * @param {user.addUserInfoRsp} message addUserInfoRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        addUserInfoRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.comm.UserInfo.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this addUserInfoRsp to JSON.
+         * @function toJSON
+         * @memberof user.addUserInfoRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        addUserInfoRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return addUserInfoRsp;
+    })();
+
+    user.removeUserByIdReq = (function() {
+
+        /**
+         * Properties of a removeUserByIdReq.
+         * @memberof user
+         * @interface IremoveUserByIdReq
+         * @property {string} rdId removeUserByIdReq rdId
+         * @property {string} rmRdId removeUserByIdReq rmRdId
+         */
+
+        /**
+         * Constructs a new removeUserByIdReq.
+         * @memberof user
+         * @classdesc Represents a removeUserByIdReq.
+         * @implements IremoveUserByIdReq
+         * @constructor
+         * @param {user.IremoveUserByIdReq=} [properties] Properties to set
+         */
+        function removeUserByIdReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * removeUserByIdReq rdId.
+         * @member {string} rdId
+         * @memberof user.removeUserByIdReq
+         * @instance
+         */
+        removeUserByIdReq.prototype.rdId = "";
+
+        /**
+         * removeUserByIdReq rmRdId.
+         * @member {string} rmRdId
+         * @memberof user.removeUserByIdReq
+         * @instance
+         */
+        removeUserByIdReq.prototype.rmRdId = "";
+
+        /**
+         * Creates a new removeUserByIdReq instance using the specified properties.
+         * @function create
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {user.IremoveUserByIdReq=} [properties] Properties to set
+         * @returns {user.removeUserByIdReq} removeUserByIdReq instance
+         */
+        removeUserByIdReq.create = function create(properties) {
+            return new removeUserByIdReq(properties);
+        };
+
+        /**
+         * Encodes the specified removeUserByIdReq message. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
+         * @function encode
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {user.IremoveUserByIdReq} message removeUserByIdReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        removeUserByIdReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.rdId);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.rmRdId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified removeUserByIdReq message, length delimited. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {user.IremoveUserByIdReq} message removeUserByIdReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        removeUserByIdReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a removeUserByIdReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.removeUserByIdReq} removeUserByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        removeUserByIdReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.removeUserByIdReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.rdId = reader.string();
+                    break;
+                case 2:
+                    message.rmRdId = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("rdId"))
+                throw $util.ProtocolError("missing required 'rdId'", { instance: message });
+            if (!message.hasOwnProperty("rmRdId"))
+                throw $util.ProtocolError("missing required 'rmRdId'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a removeUserByIdReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.removeUserByIdReq} removeUserByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        removeUserByIdReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a removeUserByIdReq message.
+         * @function verify
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        removeUserByIdReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isString(message.rdId))
+                return "rdId: string expected";
+            if (!$util.isString(message.rmRdId))
+                return "rmRdId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a removeUserByIdReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.removeUserByIdReq} removeUserByIdReq
+         */
+        removeUserByIdReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.removeUserByIdReq)
+                return object;
+            var message = new $root.user.removeUserByIdReq();
+            if (object.rdId != null)
+                message.rdId = String(object.rdId);
+            if (object.rmRdId != null)
+                message.rmRdId = String(object.rmRdId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a removeUserByIdReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.removeUserByIdReq
+         * @static
+         * @param {user.removeUserByIdReq} message removeUserByIdReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        removeUserByIdReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.rdId = "";
+                object.rmRdId = "";
+            }
+            if (message.rdId != null && message.hasOwnProperty("rdId"))
+                object.rdId = message.rdId;
+            if (message.rmRdId != null && message.hasOwnProperty("rmRdId"))
+                object.rmRdId = message.rmRdId;
+            return object;
+        };
+
+        /**
+         * Converts this removeUserByIdReq to JSON.
+         * @function toJSON
+         * @memberof user.removeUserByIdReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        removeUserByIdReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return removeUserByIdReq;
+    })();
+
+    user.removeUserByIdRsp = (function() {
+
+        /**
+         * Properties of a removeUserByIdRsp.
+         * @memberof user
+         * @interface IremoveUserByIdRsp
+         * @property {number} code removeUserByIdRsp code
+         * @property {string} msg removeUserByIdRsp msg
+         * @property {boolean|null} [data] removeUserByIdRsp data
+         */
+
+        /**
+         * Constructs a new removeUserByIdRsp.
+         * @memberof user
+         * @classdesc Represents a removeUserByIdRsp.
+         * @implements IremoveUserByIdRsp
+         * @constructor
+         * @param {user.IremoveUserByIdRsp=} [properties] Properties to set
+         */
+        function removeUserByIdRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * removeUserByIdRsp code.
+         * @member {number} code
+         * @memberof user.removeUserByIdRsp
+         * @instance
+         */
+        removeUserByIdRsp.prototype.code = 0;
+
+        /**
+         * removeUserByIdRsp msg.
+         * @member {string} msg
+         * @memberof user.removeUserByIdRsp
+         * @instance
+         */
+        removeUserByIdRsp.prototype.msg = "";
+
+        /**
+         * removeUserByIdRsp data.
+         * @member {boolean|null|undefined} data
+         * @memberof user.removeUserByIdRsp
+         * @instance
+         */
+        removeUserByIdRsp.prototype.data = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * removeUserByIdRsp _data.
+         * @member {"data"|undefined} _data
+         * @memberof user.removeUserByIdRsp
+         * @instance
+         */
+        Object.defineProperty(removeUserByIdRsp.prototype, "_data", {
+            get: $util.oneOfGetter($oneOfFields = ["data"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new removeUserByIdRsp instance using the specified properties.
+         * @function create
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {user.IremoveUserByIdRsp=} [properties] Properties to set
+         * @returns {user.removeUserByIdRsp} removeUserByIdRsp instance
+         */
+        removeUserByIdRsp.create = function create(properties) {
+            return new removeUserByIdRsp(properties);
+        };
+
+        /**
+         * Encodes the specified removeUserByIdRsp message. Does not implicitly {@link user.removeUserByIdRsp.verify|verify} messages.
+         * @function encode
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {user.IremoveUserByIdRsp} message removeUserByIdRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        removeUserByIdRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.data);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified removeUserByIdRsp message, length delimited. Does not implicitly {@link user.removeUserByIdRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {user.IremoveUserByIdRsp} message removeUserByIdRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        removeUserByIdRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a removeUserByIdRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.removeUserByIdRsp} removeUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        removeUserByIdRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.removeUserByIdRsp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a removeUserByIdRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.removeUserByIdRsp} removeUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        removeUserByIdRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a removeUserByIdRsp message.
+         * @function verify
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        removeUserByIdRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                properties._data = 1;
+                if (typeof message.data !== "boolean")
+                    return "data: boolean expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a removeUserByIdRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.removeUserByIdRsp} removeUserByIdRsp
+         */
+        removeUserByIdRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.removeUserByIdRsp)
+                return object;
+            var message = new $root.user.removeUserByIdRsp();
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null)
+                message.data = Boolean(object.data);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a removeUserByIdRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.removeUserByIdRsp
+         * @static
+         * @param {user.removeUserByIdRsp} message removeUserByIdRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        removeUserByIdRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data")) {
+                object.data = message.data;
+                if (options.oneofs)
+                    object._data = "data";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this removeUserByIdRsp to JSON.
+         * @function toJSON
+         * @memberof user.removeUserByIdRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        removeUserByIdRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return removeUserByIdRsp;
+    })();
+
+    user.queryUserByIdRsp = (function() {
+
+        /**
+         * Properties of a queryUserByIdRsp.
+         * @memberof user
+         * @interface IqueryUserByIdRsp
+         * @property {number} code queryUserByIdRsp code
+         * @property {string} msg queryUserByIdRsp msg
+         * @property {comm.IreaderType} data queryUserByIdRsp data
+         */
+
+        /**
+         * Constructs a new queryUserByIdRsp.
+         * @memberof user
+         * @classdesc Represents a queryUserByIdRsp.
+         * @implements IqueryUserByIdRsp
+         * @constructor
+         * @param {user.IqueryUserByIdRsp=} [properties] Properties to set
+         */
+        function queryUserByIdRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * queryUserByIdRsp code.
+         * @member {number} code
+         * @memberof user.queryUserByIdRsp
+         * @instance
+         */
+        queryUserByIdRsp.prototype.code = 0;
+
+        /**
+         * queryUserByIdRsp msg.
+         * @member {string} msg
+         * @memberof user.queryUserByIdRsp
+         * @instance
+         */
+        queryUserByIdRsp.prototype.msg = "";
+
+        /**
+         * queryUserByIdRsp data.
+         * @member {comm.IreaderType} data
+         * @memberof user.queryUserByIdRsp
+         * @instance
+         */
+        queryUserByIdRsp.prototype.data = null;
+
+        /**
+         * Creates a new queryUserByIdRsp instance using the specified properties.
+         * @function create
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {user.IqueryUserByIdRsp=} [properties] Properties to set
+         * @returns {user.queryUserByIdRsp} queryUserByIdRsp instance
+         */
+        queryUserByIdRsp.create = function create(properties) {
+            return new queryUserByIdRsp(properties);
+        };
+
+        /**
+         * Encodes the specified queryUserByIdRsp message. Does not implicitly {@link user.queryUserByIdRsp.verify|verify} messages.
+         * @function encode
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {user.IqueryUserByIdRsp} message queryUserByIdRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        queryUserByIdRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            $root.comm.readerType.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified queryUserByIdRsp message, length delimited. Does not implicitly {@link user.queryUserByIdRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {user.IqueryUserByIdRsp} message queryUserByIdRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        queryUserByIdRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a queryUserByIdRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.queryUserByIdRsp} queryUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        queryUserByIdRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.queryUserByIdRsp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = $root.comm.readerType.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            if (!message.hasOwnProperty("data"))
+                throw $util.ProtocolError("missing required 'data'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a queryUserByIdRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.queryUserByIdRsp} queryUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        queryUserByIdRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a queryUserByIdRsp message.
+         * @function verify
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        queryUserByIdRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
+            {
+                var error = $root.comm.readerType.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a queryUserByIdRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.queryUserByIdRsp} queryUserByIdRsp
+         */
+        queryUserByIdRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.queryUserByIdRsp)
+                return object;
+            var message = new $root.user.queryUserByIdRsp();
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".user.queryUserByIdRsp.data: object expected");
+                message.data = $root.comm.readerType.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a queryUserByIdRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.queryUserByIdRsp
+         * @static
+         * @param {user.queryUserByIdRsp} message queryUserByIdRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        queryUserByIdRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.comm.readerType.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this queryUserByIdRsp to JSON.
+         * @function toJSON
+         * @memberof user.queryUserByIdRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        queryUserByIdRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return queryUserByIdRsp;
+    })();
+
+    user.modiReaderTypeByidReq = (function() {
+
+        /**
+         * Properties of a modiReaderTypeByidReq.
+         * @memberof user
+         * @interface ImodiReaderTypeByidReq
+         * @property {number} rdID modiReaderTypeByidReq rdID
+         * @property {comm.IreaderType} rdType modiReaderTypeByidReq rdType
+         */
+
+        /**
+         * Constructs a new modiReaderTypeByidReq.
+         * @memberof user
+         * @classdesc Represents a modiReaderTypeByidReq.
+         * @implements ImodiReaderTypeByidReq
+         * @constructor
+         * @param {user.ImodiReaderTypeByidReq=} [properties] Properties to set
+         */
+        function modiReaderTypeByidReq(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * modiReaderTypeByidReq rdID.
+         * @member {number} rdID
+         * @memberof user.modiReaderTypeByidReq
+         * @instance
+         */
+        modiReaderTypeByidReq.prototype.rdID = 0;
+
+        /**
+         * modiReaderTypeByidReq rdType.
+         * @member {comm.IreaderType} rdType
+         * @memberof user.modiReaderTypeByidReq
+         * @instance
+         */
+        modiReaderTypeByidReq.prototype.rdType = null;
+
+        /**
+         * Creates a new modiReaderTypeByidReq instance using the specified properties.
+         * @function create
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {user.ImodiReaderTypeByidReq=} [properties] Properties to set
+         * @returns {user.modiReaderTypeByidReq} modiReaderTypeByidReq instance
+         */
+        modiReaderTypeByidReq.create = function create(properties) {
+            return new modiReaderTypeByidReq(properties);
+        };
+
+        /**
+         * Encodes the specified modiReaderTypeByidReq message. Does not implicitly {@link user.modiReaderTypeByidReq.verify|verify} messages.
+         * @function encode
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {user.ImodiReaderTypeByidReq} message modiReaderTypeByidReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        modiReaderTypeByidReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rdID);
+            $root.comm.readerType.encode(message.rdType, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified modiReaderTypeByidReq message, length delimited. Does not implicitly {@link user.modiReaderTypeByidReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {user.ImodiReaderTypeByidReq} message modiReaderTypeByidReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        modiReaderTypeByidReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a modiReaderTypeByidReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.modiReaderTypeByidReq} modiReaderTypeByidReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        modiReaderTypeByidReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.modiReaderTypeByidReq();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.rdID = reader.int32();
+                    break;
+                case 2:
+                    message.rdType = $root.comm.readerType.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("rdID"))
+                throw $util.ProtocolError("missing required 'rdID'", { instance: message });
+            if (!message.hasOwnProperty("rdType"))
+                throw $util.ProtocolError("missing required 'rdType'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a modiReaderTypeByidReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.modiReaderTypeByidReq} modiReaderTypeByidReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        modiReaderTypeByidReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a modiReaderTypeByidReq message.
+         * @function verify
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        modiReaderTypeByidReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.rdID))
+                return "rdID: integer expected";
+            {
+                var error = $root.comm.readerType.verify(message.rdType);
+                if (error)
+                    return "rdType." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a modiReaderTypeByidReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.modiReaderTypeByidReq} modiReaderTypeByidReq
+         */
+        modiReaderTypeByidReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.modiReaderTypeByidReq)
+                return object;
+            var message = new $root.user.modiReaderTypeByidReq();
+            if (object.rdID != null)
+                message.rdID = object.rdID | 0;
+            if (object.rdType != null) {
+                if (typeof object.rdType !== "object")
+                    throw TypeError(".user.modiReaderTypeByidReq.rdType: object expected");
+                message.rdType = $root.comm.readerType.fromObject(object.rdType);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a modiReaderTypeByidReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.modiReaderTypeByidReq
+         * @static
+         * @param {user.modiReaderTypeByidReq} message modiReaderTypeByidReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        modiReaderTypeByidReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.rdID = 0;
+                object.rdType = null;
+            }
+            if (message.rdID != null && message.hasOwnProperty("rdID"))
+                object.rdID = message.rdID;
+            if (message.rdType != null && message.hasOwnProperty("rdType"))
+                object.rdType = $root.comm.readerType.toObject(message.rdType, options);
+            return object;
+        };
+
+        /**
+         * Converts this modiReaderTypeByidReq to JSON.
+         * @function toJSON
+         * @memberof user.modiReaderTypeByidReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        modiReaderTypeByidReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return modiReaderTypeByidReq;
     })();
 
     return user;

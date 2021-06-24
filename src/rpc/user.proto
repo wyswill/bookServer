@@ -33,3 +33,31 @@ message userBaseRsp {
 message queryUserByIdReq {
   required int32 rdID=1;
 }
+
+message addUserInfoRsp {
+  required int32 code=1;
+  required string msg=2;
+  required comm.UserInfo data=3;
+}
+
+message removeUserByIdReq {
+  required string rdId=1;
+  required string rmRdId=2;
+}
+
+message removeUserByIdRsp {
+  required int32 code=1;
+  required string msg=2;
+  optional bool data=3;
+}
+
+message queryUserByIdRsp {
+  required int32 code=1;
+  required string msg=2;
+  required comm.readerType data=3;
+}
+
+message modiReaderTypeByidReq {
+ required int32 rdID=1;
+required comm.readerType rdType=2;
+}

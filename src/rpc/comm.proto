@@ -28,3 +28,13 @@ message UserInfo {
   optional string rdPwd=12;
   optional int32 rdAdminRoles=13;
 }
+// 读者类型
+message readerType {
+  optional int32 CanLendQty=1;//可以借书数量
+  optional int32 CanLendDay=2;//可借书天数
+  optional int32 CanContinueTimes=3;//可续借次数
+  optional float PunishRate=4;//罚款率
+  optional int32 DateValid=5;//证书有效期（年）【非空，0 表示永久有效】
+  optional int32 rdType=6;//读者类别【主键】
+  optional string rdTypeName=7;//读者类别名称
+}

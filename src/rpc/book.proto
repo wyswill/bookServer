@@ -8,8 +8,12 @@ service book_service {
   rpc login (user.LoginReq) returns (user.LoginRsp);
   rpc registerUser (user.registerUserReq) returns (user.userBaseRsp);
   rpc queryUserById (user.queryUserByIdReq) returns (user.userBaseRsp);
+  rpc addUserInfo (comm.UserInfo) returns (user.addUserInfoRsp);
+  rpc removeUserById (user.removeUserByIdReq) returns (user.removeUserByIdRsp);
+// 读者类别
+  rpc addReaderTypeById (user.queryUserByIdReq) returns (user.queryUserByIdRsp);
+  rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);
 
 // 其他接口
-
 }
 

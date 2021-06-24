@@ -63,6 +63,62 @@ export namespace book {
          * @returns Promise
          */
         public queryUserById(request: user.IqueryUserByIdReq): Promise<user.userBaseRsp>;
+
+        /**
+         * Calls addUserInfo.
+         * @param request UserInfo message or plain object
+         * @param callback Node-style callback called with the error, if any, and addUserInfoRsp
+         */
+        public addUserInfo(request: comm.IUserInfo, callback: book.book_service.addUserInfoCallback): void;
+
+        /**
+         * Calls addUserInfo.
+         * @param request UserInfo message or plain object
+         * @returns Promise
+         */
+        public addUserInfo(request: comm.IUserInfo): Promise<user.addUserInfoRsp>;
+
+        /**
+         * Calls removeUserById.
+         * @param request removeUserByIdReq message or plain object
+         * @param callback Node-style callback called with the error, if any, and removeUserByIdRsp
+         */
+        public removeUserById(request: user.IremoveUserByIdReq, callback: book.book_service.removeUserByIdCallback): void;
+
+        /**
+         * Calls removeUserById.
+         * @param request removeUserByIdReq message or plain object
+         * @returns Promise
+         */
+        public removeUserById(request: user.IremoveUserByIdReq): Promise<user.removeUserByIdRsp>;
+
+        /**
+         * Calls addReaderTypeById.
+         * @param request queryUserByIdReq message or plain object
+         * @param callback Node-style callback called with the error, if any, and queryUserByIdRsp
+         */
+        public addReaderTypeById(request: user.IqueryUserByIdReq, callback: book.book_service.addReaderTypeByIdCallback): void;
+
+        /**
+         * Calls addReaderTypeById.
+         * @param request queryUserByIdReq message or plain object
+         * @returns Promise
+         */
+        public addReaderTypeById(request: user.IqueryUserByIdReq): Promise<user.queryUserByIdRsp>;
+
+        /**
+         * Calls modiReaderTypeByid.
+         * @param request modiReaderTypeByidReq message or plain object
+         * @param callback Node-style callback called with the error, if any, and queryUserByIdRsp
+         */
+        public modiReaderTypeByid(request: user.ImodiReaderTypeByidReq, callback: book.book_service.modiReaderTypeByidCallback): void;
+
+        /**
+         * Calls modiReaderTypeByid.
+         * @param request modiReaderTypeByidReq message or plain object
+         * @returns Promise
+         */
+        public modiReaderTypeByid(request: user.ImodiReaderTypeByidReq): Promise<user.queryUserByIdRsp>;
     }
 
     namespace book_service {
@@ -87,6 +143,34 @@ export namespace book {
          * @param [response] userBaseRsp
          */
         type queryUserByIdCallback = (error: (Error|null), response?: user.userBaseRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#addUserInfo}.
+         * @param error Error, if any
+         * @param [response] addUserInfoRsp
+         */
+        type addUserInfoCallback = (error: (Error|null), response?: user.addUserInfoRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#removeUserById}.
+         * @param error Error, if any
+         * @param [response] removeUserByIdRsp
+         */
+        type removeUserByIdCallback = (error: (Error|null), response?: user.removeUserByIdRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#addReaderTypeById}.
+         * @param error Error, if any
+         * @param [response] queryUserByIdRsp
+         */
+        type addReaderTypeByIdCallback = (error: (Error|null), response?: user.queryUserByIdRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#modiReaderTypeByid}.
+         * @param error Error, if any
+         * @param [response] queryUserByIdRsp
+         */
+        type modiReaderTypeByidCallback = (error: (Error|null), response?: user.queryUserByIdRsp) => void;
     }
 }
 
@@ -403,6 +487,153 @@ export namespace comm {
             teacher = 1,
             student = 2
         }
+    }
+
+    /** Properties of a readerType. */
+    interface IreaderType {
+
+        /** readerType CanLendQty */
+        CanLendQty?: (number|null);
+
+        /** readerType CanLendDay */
+        CanLendDay?: (number|null);
+
+        /** readerType CanContinueTimes */
+        CanContinueTimes?: (number|null);
+
+        /** readerType PunishRate */
+        PunishRate?: (number|null);
+
+        /** readerType DateValid */
+        DateValid?: (number|null);
+
+        /** readerType rdType */
+        rdType?: (number|null);
+
+        /** readerType rdTypeName */
+        rdTypeName?: (string|null);
+    }
+
+    /** Represents a readerType. */
+    class readerType implements IreaderType {
+
+        /**
+         * Constructs a new readerType.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: comm.IreaderType);
+
+        /** readerType CanLendQty. */
+        public CanLendQty?: (number|null);
+
+        /** readerType CanLendDay. */
+        public CanLendDay?: (number|null);
+
+        /** readerType CanContinueTimes. */
+        public CanContinueTimes?: (number|null);
+
+        /** readerType PunishRate. */
+        public PunishRate?: (number|null);
+
+        /** readerType DateValid. */
+        public DateValid?: (number|null);
+
+        /** readerType rdType. */
+        public rdType?: (number|null);
+
+        /** readerType rdTypeName. */
+        public rdTypeName?: (string|null);
+
+        /** readerType _CanLendQty. */
+        public _CanLendQty?: "CanLendQty";
+
+        /** readerType _CanLendDay. */
+        public _CanLendDay?: "CanLendDay";
+
+        /** readerType _CanContinueTimes. */
+        public _CanContinueTimes?: "CanContinueTimes";
+
+        /** readerType _PunishRate. */
+        public _PunishRate?: "PunishRate";
+
+        /** readerType _DateValid. */
+        public _DateValid?: "DateValid";
+
+        /** readerType _rdType. */
+        public _rdType?: "rdType";
+
+        /** readerType _rdTypeName. */
+        public _rdTypeName?: "rdTypeName";
+
+        /**
+         * Creates a new readerType instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns readerType instance
+         */
+        public static create(properties?: comm.IreaderType): comm.readerType;
+
+        /**
+         * Encodes the specified readerType message. Does not implicitly {@link comm.readerType.verify|verify} messages.
+         * @param message readerType message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: comm.IreaderType, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified readerType message, length delimited. Does not implicitly {@link comm.readerType.verify|verify} messages.
+         * @param message readerType message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: comm.IreaderType, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a readerType message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns readerType
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): comm.readerType;
+
+        /**
+         * Decodes a readerType message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns readerType
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): comm.readerType;
+
+        /**
+         * Verifies a readerType message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a readerType message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns readerType
+         */
+        public static fromObject(object: { [k: string]: any }): comm.readerType;
+
+        /**
+         * Creates a plain object from a readerType message. Also converts values to other types if specified.
+         * @param message readerType
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: comm.readerType, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this readerType to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
     }
 }
 
@@ -941,6 +1172,507 @@ export namespace user {
 
         /**
          * Converts this queryUserByIdReq to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of an addUserInfoRsp. */
+    interface IaddUserInfoRsp {
+
+        /** addUserInfoRsp code */
+        code: number;
+
+        /** addUserInfoRsp msg */
+        msg: string;
+
+        /** addUserInfoRsp data */
+        data: comm.IUserInfo;
+    }
+
+    /** Represents an addUserInfoRsp. */
+    class addUserInfoRsp implements IaddUserInfoRsp {
+
+        /**
+         * Constructs a new addUserInfoRsp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IaddUserInfoRsp);
+
+        /** addUserInfoRsp code. */
+        public code: number;
+
+        /** addUserInfoRsp msg. */
+        public msg: string;
+
+        /** addUserInfoRsp data. */
+        public data: comm.IUserInfo;
+
+        /**
+         * Creates a new addUserInfoRsp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns addUserInfoRsp instance
+         */
+        public static create(properties?: user.IaddUserInfoRsp): user.addUserInfoRsp;
+
+        /**
+         * Encodes the specified addUserInfoRsp message. Does not implicitly {@link user.addUserInfoRsp.verify|verify} messages.
+         * @param message addUserInfoRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IaddUserInfoRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified addUserInfoRsp message, length delimited. Does not implicitly {@link user.addUserInfoRsp.verify|verify} messages.
+         * @param message addUserInfoRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IaddUserInfoRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an addUserInfoRsp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns addUserInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.addUserInfoRsp;
+
+        /**
+         * Decodes an addUserInfoRsp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns addUserInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.addUserInfoRsp;
+
+        /**
+         * Verifies an addUserInfoRsp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an addUserInfoRsp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns addUserInfoRsp
+         */
+        public static fromObject(object: { [k: string]: any }): user.addUserInfoRsp;
+
+        /**
+         * Creates a plain object from an addUserInfoRsp message. Also converts values to other types if specified.
+         * @param message addUserInfoRsp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.addUserInfoRsp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this addUserInfoRsp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a removeUserByIdReq. */
+    interface IremoveUserByIdReq {
+
+        /** removeUserByIdReq rdId */
+        rdId: string;
+
+        /** removeUserByIdReq rmRdId */
+        rmRdId: string;
+    }
+
+    /** Represents a removeUserByIdReq. */
+    class removeUserByIdReq implements IremoveUserByIdReq {
+
+        /**
+         * Constructs a new removeUserByIdReq.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IremoveUserByIdReq);
+
+        /** removeUserByIdReq rdId. */
+        public rdId: string;
+
+        /** removeUserByIdReq rmRdId. */
+        public rmRdId: string;
+
+        /**
+         * Creates a new removeUserByIdReq instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns removeUserByIdReq instance
+         */
+        public static create(properties?: user.IremoveUserByIdReq): user.removeUserByIdReq;
+
+        /**
+         * Encodes the specified removeUserByIdReq message. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
+         * @param message removeUserByIdReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IremoveUserByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified removeUserByIdReq message, length delimited. Does not implicitly {@link user.removeUserByIdReq.verify|verify} messages.
+         * @param message removeUserByIdReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IremoveUserByIdReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a removeUserByIdReq message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns removeUserByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.removeUserByIdReq;
+
+        /**
+         * Decodes a removeUserByIdReq message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns removeUserByIdReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.removeUserByIdReq;
+
+        /**
+         * Verifies a removeUserByIdReq message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a removeUserByIdReq message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns removeUserByIdReq
+         */
+        public static fromObject(object: { [k: string]: any }): user.removeUserByIdReq;
+
+        /**
+         * Creates a plain object from a removeUserByIdReq message. Also converts values to other types if specified.
+         * @param message removeUserByIdReq
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.removeUserByIdReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this removeUserByIdReq to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a removeUserByIdRsp. */
+    interface IremoveUserByIdRsp {
+
+        /** removeUserByIdRsp code */
+        code: number;
+
+        /** removeUserByIdRsp msg */
+        msg: string;
+
+        /** removeUserByIdRsp data */
+        data?: (boolean|null);
+    }
+
+    /** Represents a removeUserByIdRsp. */
+    class removeUserByIdRsp implements IremoveUserByIdRsp {
+
+        /**
+         * Constructs a new removeUserByIdRsp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IremoveUserByIdRsp);
+
+        /** removeUserByIdRsp code. */
+        public code: number;
+
+        /** removeUserByIdRsp msg. */
+        public msg: string;
+
+        /** removeUserByIdRsp data. */
+        public data?: (boolean|null);
+
+        /** removeUserByIdRsp _data. */
+        public _data?: "data";
+
+        /**
+         * Creates a new removeUserByIdRsp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns removeUserByIdRsp instance
+         */
+        public static create(properties?: user.IremoveUserByIdRsp): user.removeUserByIdRsp;
+
+        /**
+         * Encodes the specified removeUserByIdRsp message. Does not implicitly {@link user.removeUserByIdRsp.verify|verify} messages.
+         * @param message removeUserByIdRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IremoveUserByIdRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified removeUserByIdRsp message, length delimited. Does not implicitly {@link user.removeUserByIdRsp.verify|verify} messages.
+         * @param message removeUserByIdRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IremoveUserByIdRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a removeUserByIdRsp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns removeUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.removeUserByIdRsp;
+
+        /**
+         * Decodes a removeUserByIdRsp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns removeUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.removeUserByIdRsp;
+
+        /**
+         * Verifies a removeUserByIdRsp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a removeUserByIdRsp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns removeUserByIdRsp
+         */
+        public static fromObject(object: { [k: string]: any }): user.removeUserByIdRsp;
+
+        /**
+         * Creates a plain object from a removeUserByIdRsp message. Also converts values to other types if specified.
+         * @param message removeUserByIdRsp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.removeUserByIdRsp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this removeUserByIdRsp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a queryUserByIdRsp. */
+    interface IqueryUserByIdRsp {
+
+        /** queryUserByIdRsp code */
+        code: number;
+
+        /** queryUserByIdRsp msg */
+        msg: string;
+
+        /** queryUserByIdRsp data */
+        data: comm.IreaderType;
+    }
+
+    /** Represents a queryUserByIdRsp. */
+    class queryUserByIdRsp implements IqueryUserByIdRsp {
+
+        /**
+         * Constructs a new queryUserByIdRsp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IqueryUserByIdRsp);
+
+        /** queryUserByIdRsp code. */
+        public code: number;
+
+        /** queryUserByIdRsp msg. */
+        public msg: string;
+
+        /** queryUserByIdRsp data. */
+        public data: comm.IreaderType;
+
+        /**
+         * Creates a new queryUserByIdRsp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns queryUserByIdRsp instance
+         */
+        public static create(properties?: user.IqueryUserByIdRsp): user.queryUserByIdRsp;
+
+        /**
+         * Encodes the specified queryUserByIdRsp message. Does not implicitly {@link user.queryUserByIdRsp.verify|verify} messages.
+         * @param message queryUserByIdRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IqueryUserByIdRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified queryUserByIdRsp message, length delimited. Does not implicitly {@link user.queryUserByIdRsp.verify|verify} messages.
+         * @param message queryUserByIdRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IqueryUserByIdRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a queryUserByIdRsp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns queryUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.queryUserByIdRsp;
+
+        /**
+         * Decodes a queryUserByIdRsp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns queryUserByIdRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.queryUserByIdRsp;
+
+        /**
+         * Verifies a queryUserByIdRsp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a queryUserByIdRsp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns queryUserByIdRsp
+         */
+        public static fromObject(object: { [k: string]: any }): user.queryUserByIdRsp;
+
+        /**
+         * Creates a plain object from a queryUserByIdRsp message. Also converts values to other types if specified.
+         * @param message queryUserByIdRsp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.queryUserByIdRsp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this queryUserByIdRsp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a modiReaderTypeByidReq. */
+    interface ImodiReaderTypeByidReq {
+
+        /** modiReaderTypeByidReq rdID */
+        rdID: number;
+
+        /** modiReaderTypeByidReq rdType */
+        rdType: comm.IreaderType;
+    }
+
+    /** Represents a modiReaderTypeByidReq. */
+    class modiReaderTypeByidReq implements ImodiReaderTypeByidReq {
+
+        /**
+         * Constructs a new modiReaderTypeByidReq.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.ImodiReaderTypeByidReq);
+
+        /** modiReaderTypeByidReq rdID. */
+        public rdID: number;
+
+        /** modiReaderTypeByidReq rdType. */
+        public rdType: comm.IreaderType;
+
+        /**
+         * Creates a new modiReaderTypeByidReq instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns modiReaderTypeByidReq instance
+         */
+        public static create(properties?: user.ImodiReaderTypeByidReq): user.modiReaderTypeByidReq;
+
+        /**
+         * Encodes the specified modiReaderTypeByidReq message. Does not implicitly {@link user.modiReaderTypeByidReq.verify|verify} messages.
+         * @param message modiReaderTypeByidReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.ImodiReaderTypeByidReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified modiReaderTypeByidReq message, length delimited. Does not implicitly {@link user.modiReaderTypeByidReq.verify|verify} messages.
+         * @param message modiReaderTypeByidReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.ImodiReaderTypeByidReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a modiReaderTypeByidReq message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns modiReaderTypeByidReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.modiReaderTypeByidReq;
+
+        /**
+         * Decodes a modiReaderTypeByidReq message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns modiReaderTypeByidReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.modiReaderTypeByidReq;
+
+        /**
+         * Verifies a modiReaderTypeByidReq message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a modiReaderTypeByidReq message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns modiReaderTypeByidReq
+         */
+        public static fromObject(object: { [k: string]: any }): user.modiReaderTypeByidReq;
+
+        /**
+         * Creates a plain object from a modiReaderTypeByidReq message. Also converts values to other types if specified.
+         * @param message modiReaderTypeByidReq
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.modiReaderTypeByidReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this modiReaderTypeByidReq to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
