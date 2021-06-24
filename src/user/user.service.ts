@@ -171,9 +171,15 @@ export class UserService {
   async modiReaderTypeByid({
     rdType,
     rdTypeInfo,
-  }: user.ImodiReaderTypeByidReq) {
-
-
-    
+  }: user.ImodiReaderTypeByidReq): Promise<user.queryUserByIdRsp> {
+    const { TB_ReaderType } = this.db.RepoMap;
+    const { code, data, msg } = await this.findRdTypeById(rdType);
+    //@ts-ignore
+    if (code !== 0) return { code, data, msg };
+    Reflect.deleteProperty(rdTypeInfo, 'rdType');
+    const newtype = Object.assign(data, rdTypeInfo);
+    await TB_ReaderType.save(newtype);
+    //@ts-ignore
+    return { code: 0, msg: '修改成功', data: newtype };
   }
 }
