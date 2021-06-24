@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { user } from '@src/rpc/bundle';
+import { user, comm } from '@src/rpc/bundle';
 import { readerTypeConf } from '@src/util/const';
 import _ from 'lodash';
 import { DbService } from './../db/db.service';
@@ -86,6 +86,33 @@ export class UserService {
         msg: '用户未找到',
         //@ts-ignore
         data: {},
+      });
+    }
+  }
+
+  async addUserInfo(userInfo: comm.IUserInfo): Promise<user.IaddUserInfoRsp> {
+    const { TB_Reader } = this.db.RepoMap;
+    if (!userInfo.rdID) {
+      return new user.addUserInfoRsp({
+        code: -1,
+        msg: '修改失败，没有该用户',
+        data: {} as unknown as comm.UserInfo,
+      });
+    }
+    let _info = await TB_Reader.findOne({ rdID: userInfo.rdID });
+    if (_info) {
+      _info = Object.assign(_info, userInfo);
+      await TB_Reader.save(_info);
+      return new user.addUserInfoRsp({
+        code: 0,
+        msg: '修改成功',
+        data: _info as unknown as comm.UserInfo,
+      });
+    } else {
+      return new user.addUserInfoRsp({
+        code: -1,
+        msg: '修改失败，没有该用户',
+        data: {} as unknown as comm.UserInfo,
       });
     }
   }

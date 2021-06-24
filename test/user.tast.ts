@@ -9,6 +9,7 @@ const rq = new RpcQuery({
 const client = rq.getClient<book.book_service>();
 client.registerUser = promisify(client.registerUser);
 client.queryUserById = promisify(client.queryUserById);
+client.addUserInfo = promisify(client.addUserInfo);
 async function mainTest() {
   // const res = await client.registerUser({
   //   rdName: 'wyswill',
@@ -19,8 +20,13 @@ async function mainTest() {
   //   rdAdminRoles: '0',
   //   rdType: comm.UserInfo.rdTypes.student,
   // });
+  // const res = await client.queryUserById({ rdID: 30592 });
   
-  const res = await client.queryUserById({ rdID: 30592 });
+  const res = await client.addUserInfo({
+    rdID: 3059,
+    rdName:"wyswillfasd",
+    rdSex:comm.UserInfo.Sex.boy
+  });
   console.log(res);
 }
 mainTest();
