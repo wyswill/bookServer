@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { user, comm } from '@src/rpc/bundle';
+import { DbService } from '@src/db/db.service';
+import { TB_Reader } from '@src/db/entitys/TB_Reader.entity';
+import { TB_ReaderType } from '@src/db/entitys/TB_ReaderType.entity';
+import { comm, user } from '@src/rpc/bundle';
 import { readerTypeConf } from '@src/util/const';
 import _ from 'lodash';
-import { DbService } from './../db/db.service';
-import { TB_Reader } from './../db/entitys/TB_Reader.entity';
-import { TB_ReaderType } from './../db/entitys/TB_ReaderType.entity';
 
 @Injectable()
 export class UserService {
@@ -168,7 +168,12 @@ export class UserService {
     //@ts-ignore
     return { code: 0, msg: '添加成功', data: typeData.data };
   }
-  async modiReaderTypeByid(data: user.ImodiReaderTypeByidReq) {
+  async modiReaderTypeByid({
+    rdType,
+    rdTypeInfo,
+  }: user.ImodiReaderTypeByidReq) {
+
+
     
   }
 }

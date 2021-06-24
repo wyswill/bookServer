@@ -3652,8 +3652,8 @@ $root.user = (function() {
          * Properties of a modiReaderTypeByidReq.
          * @memberof user
          * @interface ImodiReaderTypeByidReq
-         * @property {number} rdID modiReaderTypeByidReq rdID
-         * @property {comm.IreaderType} rdType modiReaderTypeByidReq rdType
+         * @property {number} rdType modiReaderTypeByidReq rdType
+         * @property {comm.IreaderType} rdTypeInfo modiReaderTypeByidReq rdTypeInfo
          */
 
         /**
@@ -3672,20 +3672,20 @@ $root.user = (function() {
         }
 
         /**
-         * modiReaderTypeByidReq rdID.
-         * @member {number} rdID
+         * modiReaderTypeByidReq rdType.
+         * @member {number} rdType
          * @memberof user.modiReaderTypeByidReq
          * @instance
          */
-        modiReaderTypeByidReq.prototype.rdID = 0;
+        modiReaderTypeByidReq.prototype.rdType = 0;
 
         /**
-         * modiReaderTypeByidReq rdType.
-         * @member {comm.IreaderType} rdType
+         * modiReaderTypeByidReq rdTypeInfo.
+         * @member {comm.IreaderType} rdTypeInfo
          * @memberof user.modiReaderTypeByidReq
          * @instance
          */
-        modiReaderTypeByidReq.prototype.rdType = null;
+        modiReaderTypeByidReq.prototype.rdTypeInfo = null;
 
         /**
          * Creates a new modiReaderTypeByidReq instance using the specified properties.
@@ -3711,8 +3711,8 @@ $root.user = (function() {
         modiReaderTypeByidReq.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rdID);
-            $root.comm.readerType.encode(message.rdType, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.rdType);
+            $root.comm.readerType.encode(message.rdTypeInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -3748,20 +3748,20 @@ $root.user = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.rdID = reader.int32();
+                    message.rdType = reader.int32();
                     break;
                 case 2:
-                    message.rdType = $root.comm.readerType.decode(reader, reader.uint32());
+                    message.rdTypeInfo = $root.comm.readerType.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
                     break;
                 }
             }
-            if (!message.hasOwnProperty("rdID"))
-                throw $util.ProtocolError("missing required 'rdID'", { instance: message });
             if (!message.hasOwnProperty("rdType"))
                 throw $util.ProtocolError("missing required 'rdType'", { instance: message });
+            if (!message.hasOwnProperty("rdTypeInfo"))
+                throw $util.ProtocolError("missing required 'rdTypeInfo'", { instance: message });
             return message;
         };
 
@@ -3792,12 +3792,12 @@ $root.user = (function() {
         modiReaderTypeByidReq.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (!$util.isInteger(message.rdID))
-                return "rdID: integer expected";
+            if (!$util.isInteger(message.rdType))
+                return "rdType: integer expected";
             {
-                var error = $root.comm.readerType.verify(message.rdType);
+                var error = $root.comm.readerType.verify(message.rdTypeInfo);
                 if (error)
-                    return "rdType." + error;
+                    return "rdTypeInfo." + error;
             }
             return null;
         };
@@ -3814,12 +3814,12 @@ $root.user = (function() {
             if (object instanceof $root.user.modiReaderTypeByidReq)
                 return object;
             var message = new $root.user.modiReaderTypeByidReq();
-            if (object.rdID != null)
-                message.rdID = object.rdID | 0;
-            if (object.rdType != null) {
-                if (typeof object.rdType !== "object")
-                    throw TypeError(".user.modiReaderTypeByidReq.rdType: object expected");
-                message.rdType = $root.comm.readerType.fromObject(object.rdType);
+            if (object.rdType != null)
+                message.rdType = object.rdType | 0;
+            if (object.rdTypeInfo != null) {
+                if (typeof object.rdTypeInfo !== "object")
+                    throw TypeError(".user.modiReaderTypeByidReq.rdTypeInfo: object expected");
+                message.rdTypeInfo = $root.comm.readerType.fromObject(object.rdTypeInfo);
             }
             return message;
         };
@@ -3838,13 +3838,13 @@ $root.user = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.rdID = 0;
-                object.rdType = null;
+                object.rdType = 0;
+                object.rdTypeInfo = null;
             }
-            if (message.rdID != null && message.hasOwnProperty("rdID"))
-                object.rdID = message.rdID;
             if (message.rdType != null && message.hasOwnProperty("rdType"))
-                object.rdType = $root.comm.readerType.toObject(message.rdType, options);
+                object.rdType = message.rdType;
+            if (message.rdTypeInfo != null && message.hasOwnProperty("rdTypeInfo"))
+                object.rdTypeInfo = $root.comm.readerType.toObject(message.rdTypeInfo, options);
             return object;
         };
 

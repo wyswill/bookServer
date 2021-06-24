@@ -1480,11 +1480,11 @@ export namespace user {
     /** Properties of a modiReaderTypeByidReq. */
     interface ImodiReaderTypeByidReq {
 
-        /** modiReaderTypeByidReq rdID */
-        rdID: number;
-
         /** modiReaderTypeByidReq rdType */
-        rdType: comm.IreaderType;
+        rdType: number;
+
+        /** modiReaderTypeByidReq rdTypeInfo */
+        rdTypeInfo: comm.IreaderType;
     }
 
     /** Represents a modiReaderTypeByidReq. */
@@ -1496,11 +1496,11 @@ export namespace user {
          */
         constructor(properties?: user.ImodiReaderTypeByidReq);
 
-        /** modiReaderTypeByidReq rdID. */
-        public rdID: number;
-
         /** modiReaderTypeByidReq rdType. */
-        public rdType: comm.IreaderType;
+        public rdType: number;
+
+        /** modiReaderTypeByidReq rdTypeInfo. */
+        public rdTypeInfo: comm.IreaderType;
 
         /**
          * Creates a new modiReaderTypeByidReq instance using the specified properties.
