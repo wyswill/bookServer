@@ -21,7 +21,7 @@ async function mainTest() {
   //   rdAdminRoles: '0',
   //   rdType: comm.UserInfo.rdTypes.student,
   // });
-  // const res = await client.queryUserById({ rdID: 30592 });
+  // const res = await client.queryUserById({ rdID: 3059 });
 
   // const res = await client.addUserInfo({
   //   rdID: 3059,
@@ -29,7 +29,7 @@ async function mainTest() {
   //   rdSex:comm.UserInfo.Sex.boy
   // });
 
-  const res = await client.removeUserById({ rdID: 12312 });
+  const res = await client.removeUserById({ rdID: 3059 });
   console.log(res);
 }
 mainTest();

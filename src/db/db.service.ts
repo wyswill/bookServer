@@ -31,7 +31,7 @@ export class DbService {
       port: dbConfig.port,
       username: dbConfig.username,
       password: dbConfig.password,
-      entities: [`${__dirname}/entitys/*.entity{.ts,.js}`],
+      entities: [TB_Book, TB_Borrow, TB_Reader, TB_ReaderType],
       synchronize: true,
       maxQueryExecutionTime: 1000,
     }).then((connection: Connection) => {

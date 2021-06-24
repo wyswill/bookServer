@@ -73,7 +73,7 @@ export class UserService {
       },
     } = this;
     const userInfo = await TB_Reader.findOne({ rdID });
-    if (userInfo) {
+    if (userInfo && !userInfo.isDel) {
       return new user.userBaseRsp({
         code: 0,
         msg: '',
@@ -117,13 +117,15 @@ export class UserService {
     }
   }
 
-  async removeUserById({
-    rdID,
-  }: user.queryUserByIdReq): Promise<user.IremoveUserByIdRsp> {
-    let _info = await this.db.RepoMap.TB_Reader.findOne({ rdID });
-    if (_info) {
-      _info.isDel = true;
-      await this.db.RepoMap.TB_Reader.save(_info);
+  async removeUserById(
+    info: user.queryUserByIdReq,
+  ): Promise<user.IremoveUserByIdRsp> {
+    let { data, code } = await this.findUserById(info);
+    if (code === 0) {
+      //@ts-ignore
+      data.isDel = true;
+      //@ts-ignore
+      await this.db.RepoMap.TB_Reader.save(data);
       return new user.removeUserByIdRsp({
         code: 0,
         msg: '删除成功',
