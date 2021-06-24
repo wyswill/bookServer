@@ -64,13 +64,29 @@ export class UserService {
     //@ts-ignore
     return new user.userBaseRsp({ code: 0, msg: '注册成功', data: userInfo });
   }
-  async findUserById({ rdID }: user.IqueryUserByIdReq): Promise<TB_Reader> {
+  async findUserById({
+    rdID,
+  }: user.IqueryUserByIdReq): Promise<user.IuserBaseRsp> {
     const {
       db: {
         RepoMap: { TB_Reader },
       },
     } = this;
     const userInfo = await TB_Reader.findOne({ rdID: rdID });
-    return userInfo;
+    if (userInfo) {
+      return new user.userBaseRsp({
+        code: 0,
+        msg: '',
+        //@ts-ignore
+        data: userInfo,
+      });
+    } else {
+      return new user.userBaseRsp({
+        code: -1,
+        msg: '用户未找到',
+        //@ts-ignore
+        data: {},
+      });
+    }
   }
 }

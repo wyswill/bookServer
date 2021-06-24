@@ -17,4 +17,8 @@ export class UserController {
   async registUser(data: user.IregisterUserReq) {
     return await this.service.registerUser(data);
   }
+  @GrpcMethod('book_service', 'queryUserById')
+  async queryUserById(data:user.queryUserByIdReq) {
+    return await this.service.findUserById(data)
+  }
 }
