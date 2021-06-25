@@ -13,7 +13,10 @@ service book_service {
 // 读者类别
   rpc addReaderTypeById (user.addReaderTypeByIdReq) returns (user.queryUserByIdRsp);
   rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);
-
 // 其他接口
+
+
+
+
 }
 

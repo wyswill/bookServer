@@ -4,7 +4,7 @@ message baseRsp {
   required int32 code=1;
   required string msg=2;
 }
-
+// 读者信息
 message UserInfo {
   enum Sex {
     boy=1;
@@ -37,4 +37,8 @@ message readerType {
   optional int32 DateValid=5;//证书有效期（年）【非空，0 表示永久有效】
   optional int32 rdType=6;//读者类别【主键】
   optional string rdTypeName=7;//读者类别名称
+}
+// 图书信息
+
+message BookInfo {
 }
