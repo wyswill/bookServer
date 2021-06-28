@@ -13,10 +13,23 @@ service book_service {
 // 读者类别
   rpc addReaderTypeById (user.addReaderTypeByIdReq) returns (user.queryUserByIdRsp);
   rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);
-// 其他接口
-
-
-
-
+//图书管理
+  rpc addBookInfo (comm.BookInfo) returns (addBookInfoRsp);
+  rpc delBook (queryBookById) returns (delBookRsp);
+  rpc findBoookById (queryBookById) returns (addBookInfoRsp);
+  rpc modiBookInfo (comm.BookInfo) returns (addBookInfoRsp);
 }
 
+message addBookInfoRsp {
+  required int32 code=1;
+  required string msg=2;
+  required comm.BookInfo data=3;
+}
+message queryBookById {
+  required string bkID=1;
+}
+message delBookRsp {
+  required int32 code=1;
+  required string msg=2;
+  optional bool data=3;
+}

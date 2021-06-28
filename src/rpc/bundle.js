@@ -9,6 +9,18 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+$root.admin = (function() {
+
+    /**
+     * Namespace admin.
+     * @exports admin
+     * @namespace
+     */
+    var admin = {};
+
+    return admin;
+})();
+
 $root.book = (function() {
 
     /**
@@ -281,7 +293,815 @@ $root.book = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link book.book_service#addBookInfo}.
+         * @memberof book.book_service
+         * @typedef addBookInfoCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {book.addBookInfoRsp} [response] addBookInfoRsp
+         */
+
+        /**
+         * Calls addBookInfo.
+         * @function addBookInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IBookInfo} request BookInfo message or plain object
+         * @param {book.book_service.addBookInfoCallback} callback Node-style callback called with the error, if any, and addBookInfoRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.addBookInfo = function addBookInfo(request, callback) {
+            return this.rpcCall(addBookInfo, $root.comm.BookInfo, $root.book.addBookInfoRsp, request, callback);
+        }, "name", { value: "addBookInfo" });
+
+        /**
+         * Calls addBookInfo.
+         * @function addBookInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IBookInfo} request BookInfo message or plain object
+         * @returns {Promise<book.addBookInfoRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#delBook}.
+         * @memberof book.book_service
+         * @typedef delBookCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {book.delBookRsp} [response] delBookRsp
+         */
+
+        /**
+         * Calls delBook.
+         * @function delBook
+         * @memberof book.book_service
+         * @instance
+         * @param {book.IqueryBookById} request queryBookById message or plain object
+         * @param {book.book_service.delBookCallback} callback Node-style callback called with the error, if any, and delBookRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.delBook = function delBook(request, callback) {
+            return this.rpcCall(delBook, $root.book.queryBookById, $root.book.delBookRsp, request, callback);
+        }, "name", { value: "delBook" });
+
+        /**
+         * Calls delBook.
+         * @function delBook
+         * @memberof book.book_service
+         * @instance
+         * @param {book.IqueryBookById} request queryBookById message or plain object
+         * @returns {Promise<book.delBookRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#findBoookById}.
+         * @memberof book.book_service
+         * @typedef findBoookByIdCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {book.addBookInfoRsp} [response] addBookInfoRsp
+         */
+
+        /**
+         * Calls findBoookById.
+         * @function findBoookById
+         * @memberof book.book_service
+         * @instance
+         * @param {book.IqueryBookById} request queryBookById message or plain object
+         * @param {book.book_service.findBoookByIdCallback} callback Node-style callback called with the error, if any, and addBookInfoRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.findBoookById = function findBoookById(request, callback) {
+            return this.rpcCall(findBoookById, $root.book.queryBookById, $root.book.addBookInfoRsp, request, callback);
+        }, "name", { value: "findBoookById" });
+
+        /**
+         * Calls findBoookById.
+         * @function findBoookById
+         * @memberof book.book_service
+         * @instance
+         * @param {book.IqueryBookById} request queryBookById message or plain object
+         * @returns {Promise<book.addBookInfoRsp>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link book.book_service#modiBookInfo}.
+         * @memberof book.book_service
+         * @typedef modiBookInfoCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {book.addBookInfoRsp} [response] addBookInfoRsp
+         */
+
+        /**
+         * Calls modiBookInfo.
+         * @function modiBookInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IBookInfo} request BookInfo message or plain object
+         * @param {book.book_service.modiBookInfoCallback} callback Node-style callback called with the error, if any, and addBookInfoRsp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(book_service.prototype.modiBookInfo = function modiBookInfo(request, callback) {
+            return this.rpcCall(modiBookInfo, $root.comm.BookInfo, $root.book.addBookInfoRsp, request, callback);
+        }, "name", { value: "modiBookInfo" });
+
+        /**
+         * Calls modiBookInfo.
+         * @function modiBookInfo
+         * @memberof book.book_service
+         * @instance
+         * @param {comm.IBookInfo} request BookInfo message or plain object
+         * @returns {Promise<book.addBookInfoRsp>} Promise
+         * @variation 2
+         */
+
         return book_service;
+    })();
+
+    book.addBookInfoRsp = (function() {
+
+        /**
+         * Properties of an addBookInfoRsp.
+         * @memberof book
+         * @interface IaddBookInfoRsp
+         * @property {number} code addBookInfoRsp code
+         * @property {string} msg addBookInfoRsp msg
+         * @property {comm.IBookInfo} data addBookInfoRsp data
+         */
+
+        /**
+         * Constructs a new addBookInfoRsp.
+         * @memberof book
+         * @classdesc Represents an addBookInfoRsp.
+         * @implements IaddBookInfoRsp
+         * @constructor
+         * @param {book.IaddBookInfoRsp=} [properties] Properties to set
+         */
+        function addBookInfoRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * addBookInfoRsp code.
+         * @member {number} code
+         * @memberof book.addBookInfoRsp
+         * @instance
+         */
+        addBookInfoRsp.prototype.code = 0;
+
+        /**
+         * addBookInfoRsp msg.
+         * @member {string} msg
+         * @memberof book.addBookInfoRsp
+         * @instance
+         */
+        addBookInfoRsp.prototype.msg = "";
+
+        /**
+         * addBookInfoRsp data.
+         * @member {comm.IBookInfo} data
+         * @memberof book.addBookInfoRsp
+         * @instance
+         */
+        addBookInfoRsp.prototype.data = null;
+
+        /**
+         * Creates a new addBookInfoRsp instance using the specified properties.
+         * @function create
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {book.IaddBookInfoRsp=} [properties] Properties to set
+         * @returns {book.addBookInfoRsp} addBookInfoRsp instance
+         */
+        addBookInfoRsp.create = function create(properties) {
+            return new addBookInfoRsp(properties);
+        };
+
+        /**
+         * Encodes the specified addBookInfoRsp message. Does not implicitly {@link book.addBookInfoRsp.verify|verify} messages.
+         * @function encode
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {book.IaddBookInfoRsp} message addBookInfoRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addBookInfoRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            $root.comm.BookInfo.encode(message.data, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified addBookInfoRsp message, length delimited. Does not implicitly {@link book.addBookInfoRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {book.IaddBookInfoRsp} message addBookInfoRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        addBookInfoRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an addBookInfoRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {book.addBookInfoRsp} addBookInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addBookInfoRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.book.addBookInfoRsp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = $root.comm.BookInfo.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            if (!message.hasOwnProperty("data"))
+                throw $util.ProtocolError("missing required 'data'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes an addBookInfoRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {book.addBookInfoRsp} addBookInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        addBookInfoRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an addBookInfoRsp message.
+         * @function verify
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        addBookInfoRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
+            {
+                var error = $root.comm.BookInfo.verify(message.data);
+                if (error)
+                    return "data." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an addBookInfoRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {book.addBookInfoRsp} addBookInfoRsp
+         */
+        addBookInfoRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.book.addBookInfoRsp)
+                return object;
+            var message = new $root.book.addBookInfoRsp();
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null) {
+                if (typeof object.data !== "object")
+                    throw TypeError(".book.addBookInfoRsp.data: object expected");
+                message.data = $root.comm.BookInfo.fromObject(object.data);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an addBookInfoRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof book.addBookInfoRsp
+         * @static
+         * @param {book.addBookInfoRsp} message addBookInfoRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        addBookInfoRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+                object.data = null;
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = $root.comm.BookInfo.toObject(message.data, options);
+            return object;
+        };
+
+        /**
+         * Converts this addBookInfoRsp to JSON.
+         * @function toJSON
+         * @memberof book.addBookInfoRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        addBookInfoRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return addBookInfoRsp;
+    })();
+
+    book.queryBookById = (function() {
+
+        /**
+         * Properties of a queryBookById.
+         * @memberof book
+         * @interface IqueryBookById
+         * @property {string} bkID queryBookById bkID
+         */
+
+        /**
+         * Constructs a new queryBookById.
+         * @memberof book
+         * @classdesc Represents a queryBookById.
+         * @implements IqueryBookById
+         * @constructor
+         * @param {book.IqueryBookById=} [properties] Properties to set
+         */
+        function queryBookById(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * queryBookById bkID.
+         * @member {string} bkID
+         * @memberof book.queryBookById
+         * @instance
+         */
+        queryBookById.prototype.bkID = "";
+
+        /**
+         * Creates a new queryBookById instance using the specified properties.
+         * @function create
+         * @memberof book.queryBookById
+         * @static
+         * @param {book.IqueryBookById=} [properties] Properties to set
+         * @returns {book.queryBookById} queryBookById instance
+         */
+        queryBookById.create = function create(properties) {
+            return new queryBookById(properties);
+        };
+
+        /**
+         * Encodes the specified queryBookById message. Does not implicitly {@link book.queryBookById.verify|verify} messages.
+         * @function encode
+         * @memberof book.queryBookById
+         * @static
+         * @param {book.IqueryBookById} message queryBookById message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        queryBookById.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.bkID);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified queryBookById message, length delimited. Does not implicitly {@link book.queryBookById.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof book.queryBookById
+         * @static
+         * @param {book.IqueryBookById} message queryBookById message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        queryBookById.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a queryBookById message from the specified reader or buffer.
+         * @function decode
+         * @memberof book.queryBookById
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {book.queryBookById} queryBookById
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        queryBookById.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.book.queryBookById();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.bkID = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("bkID"))
+                throw $util.ProtocolError("missing required 'bkID'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a queryBookById message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof book.queryBookById
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {book.queryBookById} queryBookById
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        queryBookById.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a queryBookById message.
+         * @function verify
+         * @memberof book.queryBookById
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        queryBookById.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (!$util.isString(message.bkID))
+                return "bkID: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a queryBookById message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof book.queryBookById
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {book.queryBookById} queryBookById
+         */
+        queryBookById.fromObject = function fromObject(object) {
+            if (object instanceof $root.book.queryBookById)
+                return object;
+            var message = new $root.book.queryBookById();
+            if (object.bkID != null)
+                message.bkID = String(object.bkID);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a queryBookById message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof book.queryBookById
+         * @static
+         * @param {book.queryBookById} message queryBookById
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        queryBookById.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.bkID = "";
+            if (message.bkID != null && message.hasOwnProperty("bkID"))
+                object.bkID = message.bkID;
+            return object;
+        };
+
+        /**
+         * Converts this queryBookById to JSON.
+         * @function toJSON
+         * @memberof book.queryBookById
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        queryBookById.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return queryBookById;
+    })();
+
+    book.delBookRsp = (function() {
+
+        /**
+         * Properties of a delBookRsp.
+         * @memberof book
+         * @interface IdelBookRsp
+         * @property {number} code delBookRsp code
+         * @property {string} msg delBookRsp msg
+         * @property {boolean|null} [data] delBookRsp data
+         */
+
+        /**
+         * Constructs a new delBookRsp.
+         * @memberof book
+         * @classdesc Represents a delBookRsp.
+         * @implements IdelBookRsp
+         * @constructor
+         * @param {book.IdelBookRsp=} [properties] Properties to set
+         */
+        function delBookRsp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * delBookRsp code.
+         * @member {number} code
+         * @memberof book.delBookRsp
+         * @instance
+         */
+        delBookRsp.prototype.code = 0;
+
+        /**
+         * delBookRsp msg.
+         * @member {string} msg
+         * @memberof book.delBookRsp
+         * @instance
+         */
+        delBookRsp.prototype.msg = "";
+
+        /**
+         * delBookRsp data.
+         * @member {boolean|null|undefined} data
+         * @memberof book.delBookRsp
+         * @instance
+         */
+        delBookRsp.prototype.data = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * delBookRsp _data.
+         * @member {"data"|undefined} _data
+         * @memberof book.delBookRsp
+         * @instance
+         */
+        Object.defineProperty(delBookRsp.prototype, "_data", {
+            get: $util.oneOfGetter($oneOfFields = ["data"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new delBookRsp instance using the specified properties.
+         * @function create
+         * @memberof book.delBookRsp
+         * @static
+         * @param {book.IdelBookRsp=} [properties] Properties to set
+         * @returns {book.delBookRsp} delBookRsp instance
+         */
+        delBookRsp.create = function create(properties) {
+            return new delBookRsp(properties);
+        };
+
+        /**
+         * Encodes the specified delBookRsp message. Does not implicitly {@link book.delBookRsp.verify|verify} messages.
+         * @function encode
+         * @memberof book.delBookRsp
+         * @static
+         * @param {book.IdelBookRsp} message delBookRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        delBookRsp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.msg);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.data);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified delBookRsp message, length delimited. Does not implicitly {@link book.delBookRsp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof book.delBookRsp
+         * @static
+         * @param {book.IdelBookRsp} message delBookRsp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        delBookRsp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a delBookRsp message from the specified reader or buffer.
+         * @function decode
+         * @memberof book.delBookRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {book.delBookRsp} delBookRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        delBookRsp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.book.delBookRsp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.code = reader.int32();
+                    break;
+                case 2:
+                    message.msg = reader.string();
+                    break;
+                case 3:
+                    message.data = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            if (!message.hasOwnProperty("code"))
+                throw $util.ProtocolError("missing required 'code'", { instance: message });
+            if (!message.hasOwnProperty("msg"))
+                throw $util.ProtocolError("missing required 'msg'", { instance: message });
+            return message;
+        };
+
+        /**
+         * Decodes a delBookRsp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof book.delBookRsp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {book.delBookRsp} delBookRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        delBookRsp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a delBookRsp message.
+         * @function verify
+         * @memberof book.delBookRsp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        delBookRsp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (!$util.isInteger(message.code))
+                return "code: integer expected";
+            if (!$util.isString(message.msg))
+                return "msg: string expected";
+            if (message.data != null && message.hasOwnProperty("data")) {
+                properties._data = 1;
+                if (typeof message.data !== "boolean")
+                    return "data: boolean expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a delBookRsp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof book.delBookRsp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {book.delBookRsp} delBookRsp
+         */
+        delBookRsp.fromObject = function fromObject(object) {
+            if (object instanceof $root.book.delBookRsp)
+                return object;
+            var message = new $root.book.delBookRsp();
+            if (object.code != null)
+                message.code = object.code | 0;
+            if (object.msg != null)
+                message.msg = String(object.msg);
+            if (object.data != null)
+                message.data = Boolean(object.data);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a delBookRsp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof book.delBookRsp
+         * @static
+         * @param {book.delBookRsp} message delBookRsp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        delBookRsp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.code = 0;
+                object.msg = "";
+            }
+            if (message.code != null && message.hasOwnProperty("code"))
+                object.code = message.code;
+            if (message.msg != null && message.hasOwnProperty("msg"))
+                object.msg = message.msg;
+            if (message.data != null && message.hasOwnProperty("data")) {
+                object.data = message.data;
+                if (options.oneofs)
+                    object._data = "data";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this delBookRsp to JSON.
+         * @function toJSON
+         * @memberof book.delBookRsp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        delBookRsp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return delBookRsp;
     })();
 
     return book;
@@ -1634,6 +2454,729 @@ $root.comm = (function() {
         };
 
         return readerType;
+    })();
+
+    comm.BookInfo = (function() {
+
+        /**
+         * Properties of a BookInfo.
+         * @memberof comm
+         * @interface IBookInfo
+         * @property {string|null} [bkCode] BookInfo bkCode
+         * @property {string|null} [bkName] BookInfo bkName
+         * @property {string|null} [bkAuthor] BookInfo bkAuthor
+         * @property {string|null} [bkPress] BookInfo bkPress
+         * @property {string|null} [bkDatePress] BookInfo bkDatePress
+         * @property {string|null} [bkISBN] BookInfo bkISBN
+         * @property {string|null} [bkCatalog] BookInfo bkCatalog
+         * @property {string|null} [bkLanguage] BookInfo bkLanguage
+         * @property {number|null} [bkPages] BookInfo bkPages
+         * @property {number|null} [bkPrice] BookInfo bkPrice
+         * @property {string|null} [bkDateIn] BookInfo bkDateIn
+         * @property {string|null} [bkBrief] BookInfo bkBrief
+         * @property {string|null} [bkCover] BookInfo bkCover
+         * @property {string|null} [bkStatus] BookInfo bkStatus
+         * @property {string|null} [bkID] BookInfo bkID
+         */
+
+        /**
+         * Constructs a new BookInfo.
+         * @memberof comm
+         * @classdesc Represents a BookInfo.
+         * @implements IBookInfo
+         * @constructor
+         * @param {comm.IBookInfo=} [properties] Properties to set
+         */
+        function BookInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BookInfo bkCode.
+         * @member {string|null|undefined} bkCode
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkCode = null;
+
+        /**
+         * BookInfo bkName.
+         * @member {string|null|undefined} bkName
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkName = null;
+
+        /**
+         * BookInfo bkAuthor.
+         * @member {string|null|undefined} bkAuthor
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkAuthor = null;
+
+        /**
+         * BookInfo bkPress.
+         * @member {string|null|undefined} bkPress
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkPress = null;
+
+        /**
+         * BookInfo bkDatePress.
+         * @member {string|null|undefined} bkDatePress
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkDatePress = null;
+
+        /**
+         * BookInfo bkISBN.
+         * @member {string|null|undefined} bkISBN
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkISBN = null;
+
+        /**
+         * BookInfo bkCatalog.
+         * @member {string|null|undefined} bkCatalog
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkCatalog = null;
+
+        /**
+         * BookInfo bkLanguage.
+         * @member {string|null|undefined} bkLanguage
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkLanguage = null;
+
+        /**
+         * BookInfo bkPages.
+         * @member {number|null|undefined} bkPages
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkPages = null;
+
+        /**
+         * BookInfo bkPrice.
+         * @member {number|null|undefined} bkPrice
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkPrice = null;
+
+        /**
+         * BookInfo bkDateIn.
+         * @member {string|null|undefined} bkDateIn
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkDateIn = null;
+
+        /**
+         * BookInfo bkBrief.
+         * @member {string|null|undefined} bkBrief
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkBrief = null;
+
+        /**
+         * BookInfo bkCover.
+         * @member {string|null|undefined} bkCover
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkCover = null;
+
+        /**
+         * BookInfo bkStatus.
+         * @member {string|null|undefined} bkStatus
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkStatus = null;
+
+        /**
+         * BookInfo bkID.
+         * @member {string|null|undefined} bkID
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        BookInfo.prototype.bkID = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * BookInfo _bkCode.
+         * @member {"bkCode"|undefined} _bkCode
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkCode", {
+            get: $util.oneOfGetter($oneOfFields = ["bkCode"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkName.
+         * @member {"bkName"|undefined} _bkName
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkName", {
+            get: $util.oneOfGetter($oneOfFields = ["bkName"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkAuthor.
+         * @member {"bkAuthor"|undefined} _bkAuthor
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkAuthor", {
+            get: $util.oneOfGetter($oneOfFields = ["bkAuthor"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkPress.
+         * @member {"bkPress"|undefined} _bkPress
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkPress", {
+            get: $util.oneOfGetter($oneOfFields = ["bkPress"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkDatePress.
+         * @member {"bkDatePress"|undefined} _bkDatePress
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkDatePress", {
+            get: $util.oneOfGetter($oneOfFields = ["bkDatePress"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkISBN.
+         * @member {"bkISBN"|undefined} _bkISBN
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkISBN", {
+            get: $util.oneOfGetter($oneOfFields = ["bkISBN"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkCatalog.
+         * @member {"bkCatalog"|undefined} _bkCatalog
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkCatalog", {
+            get: $util.oneOfGetter($oneOfFields = ["bkCatalog"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkLanguage.
+         * @member {"bkLanguage"|undefined} _bkLanguage
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkLanguage", {
+            get: $util.oneOfGetter($oneOfFields = ["bkLanguage"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkPages.
+         * @member {"bkPages"|undefined} _bkPages
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkPages", {
+            get: $util.oneOfGetter($oneOfFields = ["bkPages"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkPrice.
+         * @member {"bkPrice"|undefined} _bkPrice
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkPrice", {
+            get: $util.oneOfGetter($oneOfFields = ["bkPrice"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkDateIn.
+         * @member {"bkDateIn"|undefined} _bkDateIn
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkDateIn", {
+            get: $util.oneOfGetter($oneOfFields = ["bkDateIn"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkBrief.
+         * @member {"bkBrief"|undefined} _bkBrief
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkBrief", {
+            get: $util.oneOfGetter($oneOfFields = ["bkBrief"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkCover.
+         * @member {"bkCover"|undefined} _bkCover
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkCover", {
+            get: $util.oneOfGetter($oneOfFields = ["bkCover"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkStatus.
+         * @member {"bkStatus"|undefined} _bkStatus
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkStatus", {
+            get: $util.oneOfGetter($oneOfFields = ["bkStatus"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * BookInfo _bkID.
+         * @member {"bkID"|undefined} _bkID
+         * @memberof comm.BookInfo
+         * @instance
+         */
+        Object.defineProperty(BookInfo.prototype, "_bkID", {
+            get: $util.oneOfGetter($oneOfFields = ["bkID"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new BookInfo instance using the specified properties.
+         * @function create
+         * @memberof comm.BookInfo
+         * @static
+         * @param {comm.IBookInfo=} [properties] Properties to set
+         * @returns {comm.BookInfo} BookInfo instance
+         */
+        BookInfo.create = function create(properties) {
+            return new BookInfo(properties);
+        };
+
+        /**
+         * Encodes the specified BookInfo message. Does not implicitly {@link comm.BookInfo.verify|verify} messages.
+         * @function encode
+         * @memberof comm.BookInfo
+         * @static
+         * @param {comm.IBookInfo} message BookInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BookInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.bkCode != null && Object.hasOwnProperty.call(message, "bkCode"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.bkCode);
+            if (message.bkName != null && Object.hasOwnProperty.call(message, "bkName"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.bkName);
+            if (message.bkAuthor != null && Object.hasOwnProperty.call(message, "bkAuthor"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.bkAuthor);
+            if (message.bkPress != null && Object.hasOwnProperty.call(message, "bkPress"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.bkPress);
+            if (message.bkDatePress != null && Object.hasOwnProperty.call(message, "bkDatePress"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.bkDatePress);
+            if (message.bkISBN != null && Object.hasOwnProperty.call(message, "bkISBN"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.bkISBN);
+            if (message.bkCatalog != null && Object.hasOwnProperty.call(message, "bkCatalog"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.bkCatalog);
+            if (message.bkLanguage != null && Object.hasOwnProperty.call(message, "bkLanguage"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.bkLanguage);
+            if (message.bkPages != null && Object.hasOwnProperty.call(message, "bkPages"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int32(message.bkPages);
+            if (message.bkPrice != null && Object.hasOwnProperty.call(message, "bkPrice"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.bkPrice);
+            if (message.bkDateIn != null && Object.hasOwnProperty.call(message, "bkDateIn"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.bkDateIn);
+            if (message.bkBrief != null && Object.hasOwnProperty.call(message, "bkBrief"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.bkBrief);
+            if (message.bkCover != null && Object.hasOwnProperty.call(message, "bkCover"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.bkCover);
+            if (message.bkStatus != null && Object.hasOwnProperty.call(message, "bkStatus"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.bkStatus);
+            if (message.bkID != null && Object.hasOwnProperty.call(message, "bkID"))
+                writer.uint32(/* id 15, wireType 2 =*/122).string(message.bkID);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BookInfo message, length delimited. Does not implicitly {@link comm.BookInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof comm.BookInfo
+         * @static
+         * @param {comm.IBookInfo} message BookInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BookInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BookInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof comm.BookInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {comm.BookInfo} BookInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BookInfo.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.comm.BookInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.bkCode = reader.string();
+                    break;
+                case 2:
+                    message.bkName = reader.string();
+                    break;
+                case 3:
+                    message.bkAuthor = reader.string();
+                    break;
+                case 4:
+                    message.bkPress = reader.string();
+                    break;
+                case 5:
+                    message.bkDatePress = reader.string();
+                    break;
+                case 6:
+                    message.bkISBN = reader.string();
+                    break;
+                case 7:
+                    message.bkCatalog = reader.string();
+                    break;
+                case 8:
+                    message.bkLanguage = reader.string();
+                    break;
+                case 9:
+                    message.bkPages = reader.int32();
+                    break;
+                case 10:
+                    message.bkPrice = reader.int32();
+                    break;
+                case 11:
+                    message.bkDateIn = reader.string();
+                    break;
+                case 12:
+                    message.bkBrief = reader.string();
+                    break;
+                case 13:
+                    message.bkCover = reader.string();
+                    break;
+                case 14:
+                    message.bkStatus = reader.string();
+                    break;
+                case 15:
+                    message.bkID = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BookInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof comm.BookInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {comm.BookInfo} BookInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BookInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BookInfo message.
+         * @function verify
+         * @memberof comm.BookInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BookInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.bkCode != null && message.hasOwnProperty("bkCode")) {
+                properties._bkCode = 1;
+                if (!$util.isString(message.bkCode))
+                    return "bkCode: string expected";
+            }
+            if (message.bkName != null && message.hasOwnProperty("bkName")) {
+                properties._bkName = 1;
+                if (!$util.isString(message.bkName))
+                    return "bkName: string expected";
+            }
+            if (message.bkAuthor != null && message.hasOwnProperty("bkAuthor")) {
+                properties._bkAuthor = 1;
+                if (!$util.isString(message.bkAuthor))
+                    return "bkAuthor: string expected";
+            }
+            if (message.bkPress != null && message.hasOwnProperty("bkPress")) {
+                properties._bkPress = 1;
+                if (!$util.isString(message.bkPress))
+                    return "bkPress: string expected";
+            }
+            if (message.bkDatePress != null && message.hasOwnProperty("bkDatePress")) {
+                properties._bkDatePress = 1;
+                if (!$util.isString(message.bkDatePress))
+                    return "bkDatePress: string expected";
+            }
+            if (message.bkISBN != null && message.hasOwnProperty("bkISBN")) {
+                properties._bkISBN = 1;
+                if (!$util.isString(message.bkISBN))
+                    return "bkISBN: string expected";
+            }
+            if (message.bkCatalog != null && message.hasOwnProperty("bkCatalog")) {
+                properties._bkCatalog = 1;
+                if (!$util.isString(message.bkCatalog))
+                    return "bkCatalog: string expected";
+            }
+            if (message.bkLanguage != null && message.hasOwnProperty("bkLanguage")) {
+                properties._bkLanguage = 1;
+                if (!$util.isString(message.bkLanguage))
+                    return "bkLanguage: string expected";
+            }
+            if (message.bkPages != null && message.hasOwnProperty("bkPages")) {
+                properties._bkPages = 1;
+                if (!$util.isInteger(message.bkPages))
+                    return "bkPages: integer expected";
+            }
+            if (message.bkPrice != null && message.hasOwnProperty("bkPrice")) {
+                properties._bkPrice = 1;
+                if (!$util.isInteger(message.bkPrice))
+                    return "bkPrice: integer expected";
+            }
+            if (message.bkDateIn != null && message.hasOwnProperty("bkDateIn")) {
+                properties._bkDateIn = 1;
+                if (!$util.isString(message.bkDateIn))
+                    return "bkDateIn: string expected";
+            }
+            if (message.bkBrief != null && message.hasOwnProperty("bkBrief")) {
+                properties._bkBrief = 1;
+                if (!$util.isString(message.bkBrief))
+                    return "bkBrief: string expected";
+            }
+            if (message.bkCover != null && message.hasOwnProperty("bkCover")) {
+                properties._bkCover = 1;
+                if (!$util.isString(message.bkCover))
+                    return "bkCover: string expected";
+            }
+            if (message.bkStatus != null && message.hasOwnProperty("bkStatus")) {
+                properties._bkStatus = 1;
+                if (!$util.isString(message.bkStatus))
+                    return "bkStatus: string expected";
+            }
+            if (message.bkID != null && message.hasOwnProperty("bkID")) {
+                properties._bkID = 1;
+                if (!$util.isString(message.bkID))
+                    return "bkID: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BookInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof comm.BookInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {comm.BookInfo} BookInfo
+         */
+        BookInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.comm.BookInfo)
+                return object;
+            var message = new $root.comm.BookInfo();
+            if (object.bkCode != null)
+                message.bkCode = String(object.bkCode);
+            if (object.bkName != null)
+                message.bkName = String(object.bkName);
+            if (object.bkAuthor != null)
+                message.bkAuthor = String(object.bkAuthor);
+            if (object.bkPress != null)
+                message.bkPress = String(object.bkPress);
+            if (object.bkDatePress != null)
+                message.bkDatePress = String(object.bkDatePress);
+            if (object.bkISBN != null)
+                message.bkISBN = String(object.bkISBN);
+            if (object.bkCatalog != null)
+                message.bkCatalog = String(object.bkCatalog);
+            if (object.bkLanguage != null)
+                message.bkLanguage = String(object.bkLanguage);
+            if (object.bkPages != null)
+                message.bkPages = object.bkPages | 0;
+            if (object.bkPrice != null)
+                message.bkPrice = object.bkPrice | 0;
+            if (object.bkDateIn != null)
+                message.bkDateIn = String(object.bkDateIn);
+            if (object.bkBrief != null)
+                message.bkBrief = String(object.bkBrief);
+            if (object.bkCover != null)
+                message.bkCover = String(object.bkCover);
+            if (object.bkStatus != null)
+                message.bkStatus = String(object.bkStatus);
+            if (object.bkID != null)
+                message.bkID = String(object.bkID);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BookInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof comm.BookInfo
+         * @static
+         * @param {comm.BookInfo} message BookInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BookInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (message.bkCode != null && message.hasOwnProperty("bkCode")) {
+                object.bkCode = message.bkCode;
+                if (options.oneofs)
+                    object._bkCode = "bkCode";
+            }
+            if (message.bkName != null && message.hasOwnProperty("bkName")) {
+                object.bkName = message.bkName;
+                if (options.oneofs)
+                    object._bkName = "bkName";
+            }
+            if (message.bkAuthor != null && message.hasOwnProperty("bkAuthor")) {
+                object.bkAuthor = message.bkAuthor;
+                if (options.oneofs)
+                    object._bkAuthor = "bkAuthor";
+            }
+            if (message.bkPress != null && message.hasOwnProperty("bkPress")) {
+                object.bkPress = message.bkPress;
+                if (options.oneofs)
+                    object._bkPress = "bkPress";
+            }
+            if (message.bkDatePress != null && message.hasOwnProperty("bkDatePress")) {
+                object.bkDatePress = message.bkDatePress;
+                if (options.oneofs)
+                    object._bkDatePress = "bkDatePress";
+            }
+            if (message.bkISBN != null && message.hasOwnProperty("bkISBN")) {
+                object.bkISBN = message.bkISBN;
+                if (options.oneofs)
+                    object._bkISBN = "bkISBN";
+            }
+            if (message.bkCatalog != null && message.hasOwnProperty("bkCatalog")) {
+                object.bkCatalog = message.bkCatalog;
+                if (options.oneofs)
+                    object._bkCatalog = "bkCatalog";
+            }
+            if (message.bkLanguage != null && message.hasOwnProperty("bkLanguage")) {
+                object.bkLanguage = message.bkLanguage;
+                if (options.oneofs)
+                    object._bkLanguage = "bkLanguage";
+            }
+            if (message.bkPages != null && message.hasOwnProperty("bkPages")) {
+                object.bkPages = message.bkPages;
+                if (options.oneofs)
+                    object._bkPages = "bkPages";
+            }
+            if (message.bkPrice != null && message.hasOwnProperty("bkPrice")) {
+                object.bkPrice = message.bkPrice;
+                if (options.oneofs)
+                    object._bkPrice = "bkPrice";
+            }
+            if (message.bkDateIn != null && message.hasOwnProperty("bkDateIn")) {
+                object.bkDateIn = message.bkDateIn;
+                if (options.oneofs)
+                    object._bkDateIn = "bkDateIn";
+            }
+            if (message.bkBrief != null && message.hasOwnProperty("bkBrief")) {
+                object.bkBrief = message.bkBrief;
+                if (options.oneofs)
+                    object._bkBrief = "bkBrief";
+            }
+            if (message.bkCover != null && message.hasOwnProperty("bkCover")) {
+                object.bkCover = message.bkCover;
+                if (options.oneofs)
+                    object._bkCover = "bkCover";
+            }
+            if (message.bkStatus != null && message.hasOwnProperty("bkStatus")) {
+                object.bkStatus = message.bkStatus;
+                if (options.oneofs)
+                    object._bkStatus = "bkStatus";
+            }
+            if (message.bkID != null && message.hasOwnProperty("bkID")) {
+                object.bkID = message.bkID;
+                if (options.oneofs)
+                    object._bkID = "bkID";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BookInfo to JSON.
+         * @function toJSON
+         * @memberof comm.BookInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BookInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BookInfo;
     })();
 
     return comm;

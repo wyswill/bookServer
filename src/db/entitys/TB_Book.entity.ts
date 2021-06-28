@@ -1,9 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryColumn
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class TB_Book {
@@ -65,4 +60,6 @@ export class TB_Book {
     comment: '图书状态，在馆、借出、遗失、变卖、销毁',
   })
   bkStatus: string;
+  @Column({ default: false, comment: '是否删除' })
+  isDel: boolean;
 }

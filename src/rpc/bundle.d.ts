@@ -119,6 +119,62 @@ export namespace book {
          * @returns Promise
          */
         public modiReaderTypeByid(request: user.ImodiReaderTypeByidReq): Promise<user.queryUserByIdRsp>;
+
+        /**
+         * Calls addBookInfo.
+         * @param request BookInfo message or plain object
+         * @param callback Node-style callback called with the error, if any, and addBookInfoRsp
+         */
+        public addBookInfo(request: comm.IBookInfo, callback: book.book_service.addBookInfoCallback): void;
+
+        /**
+         * Calls addBookInfo.
+         * @param request BookInfo message or plain object
+         * @returns Promise
+         */
+        public addBookInfo(request: comm.IBookInfo): Promise<book.addBookInfoRsp>;
+
+        /**
+         * Calls delBook.
+         * @param request queryBookById message or plain object
+         * @param callback Node-style callback called with the error, if any, and delBookRsp
+         */
+        public delBook(request: book.IqueryBookById, callback: book.book_service.delBookCallback): void;
+
+        /**
+         * Calls delBook.
+         * @param request queryBookById message or plain object
+         * @returns Promise
+         */
+        public delBook(request: book.IqueryBookById): Promise<book.delBookRsp>;
+
+        /**
+         * Calls findBoookById.
+         * @param request queryBookById message or plain object
+         * @param callback Node-style callback called with the error, if any, and addBookInfoRsp
+         */
+        public findBoookById(request: book.IqueryBookById, callback: book.book_service.findBoookByIdCallback): void;
+
+        /**
+         * Calls findBoookById.
+         * @param request queryBookById message or plain object
+         * @returns Promise
+         */
+        public findBoookById(request: book.IqueryBookById): Promise<book.addBookInfoRsp>;
+
+        /**
+         * Calls modiBookInfo.
+         * @param request BookInfo message or plain object
+         * @param callback Node-style callback called with the error, if any, and addBookInfoRsp
+         */
+        public modiBookInfo(request: comm.IBookInfo, callback: book.book_service.modiBookInfoCallback): void;
+
+        /**
+         * Calls modiBookInfo.
+         * @param request BookInfo message or plain object
+         * @returns Promise
+         */
+        public modiBookInfo(request: comm.IBookInfo): Promise<book.addBookInfoRsp>;
     }
 
     namespace book_service {
@@ -171,6 +227,331 @@ export namespace book {
          * @param [response] queryUserByIdRsp
          */
         type modiReaderTypeByidCallback = (error: (Error|null), response?: user.queryUserByIdRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#addBookInfo}.
+         * @param error Error, if any
+         * @param [response] addBookInfoRsp
+         */
+        type addBookInfoCallback = (error: (Error|null), response?: book.addBookInfoRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#delBook}.
+         * @param error Error, if any
+         * @param [response] delBookRsp
+         */
+        type delBookCallback = (error: (Error|null), response?: book.delBookRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#findBoookById}.
+         * @param error Error, if any
+         * @param [response] addBookInfoRsp
+         */
+        type findBoookByIdCallback = (error: (Error|null), response?: book.addBookInfoRsp) => void;
+
+        /**
+         * Callback as used by {@link book.book_service#modiBookInfo}.
+         * @param error Error, if any
+         * @param [response] addBookInfoRsp
+         */
+        type modiBookInfoCallback = (error: (Error|null), response?: book.addBookInfoRsp) => void;
+    }
+
+    /** Properties of an addBookInfoRsp. */
+    interface IaddBookInfoRsp {
+
+        /** addBookInfoRsp code */
+        code: number;
+
+        /** addBookInfoRsp msg */
+        msg: string;
+
+        /** addBookInfoRsp data */
+        data: comm.IBookInfo;
+    }
+
+    /** Represents an addBookInfoRsp. */
+    class addBookInfoRsp implements IaddBookInfoRsp {
+
+        /**
+         * Constructs a new addBookInfoRsp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: book.IaddBookInfoRsp);
+
+        /** addBookInfoRsp code. */
+        public code: number;
+
+        /** addBookInfoRsp msg. */
+        public msg: string;
+
+        /** addBookInfoRsp data. */
+        public data: comm.IBookInfo;
+
+        /**
+         * Creates a new addBookInfoRsp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns addBookInfoRsp instance
+         */
+        public static create(properties?: book.IaddBookInfoRsp): book.addBookInfoRsp;
+
+        /**
+         * Encodes the specified addBookInfoRsp message. Does not implicitly {@link book.addBookInfoRsp.verify|verify} messages.
+         * @param message addBookInfoRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: book.IaddBookInfoRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified addBookInfoRsp message, length delimited. Does not implicitly {@link book.addBookInfoRsp.verify|verify} messages.
+         * @param message addBookInfoRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: book.IaddBookInfoRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an addBookInfoRsp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns addBookInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): book.addBookInfoRsp;
+
+        /**
+         * Decodes an addBookInfoRsp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns addBookInfoRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): book.addBookInfoRsp;
+
+        /**
+         * Verifies an addBookInfoRsp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an addBookInfoRsp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns addBookInfoRsp
+         */
+        public static fromObject(object: { [k: string]: any }): book.addBookInfoRsp;
+
+        /**
+         * Creates a plain object from an addBookInfoRsp message. Also converts values to other types if specified.
+         * @param message addBookInfoRsp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: book.addBookInfoRsp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this addBookInfoRsp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a queryBookById. */
+    interface IqueryBookById {
+
+        /** queryBookById bkID */
+        bkID: string;
+    }
+
+    /** Represents a queryBookById. */
+    class queryBookById implements IqueryBookById {
+
+        /**
+         * Constructs a new queryBookById.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: book.IqueryBookById);
+
+        /** queryBookById bkID. */
+        public bkID: string;
+
+        /**
+         * Creates a new queryBookById instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns queryBookById instance
+         */
+        public static create(properties?: book.IqueryBookById): book.queryBookById;
+
+        /**
+         * Encodes the specified queryBookById message. Does not implicitly {@link book.queryBookById.verify|verify} messages.
+         * @param message queryBookById message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: book.IqueryBookById, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified queryBookById message, length delimited. Does not implicitly {@link book.queryBookById.verify|verify} messages.
+         * @param message queryBookById message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: book.IqueryBookById, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a queryBookById message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns queryBookById
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): book.queryBookById;
+
+        /**
+         * Decodes a queryBookById message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns queryBookById
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): book.queryBookById;
+
+        /**
+         * Verifies a queryBookById message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a queryBookById message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns queryBookById
+         */
+        public static fromObject(object: { [k: string]: any }): book.queryBookById;
+
+        /**
+         * Creates a plain object from a queryBookById message. Also converts values to other types if specified.
+         * @param message queryBookById
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: book.queryBookById, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this queryBookById to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a delBookRsp. */
+    interface IdelBookRsp {
+
+        /** delBookRsp code */
+        code: number;
+
+        /** delBookRsp msg */
+        msg: string;
+
+        /** delBookRsp data */
+        data?: (boolean|null);
+    }
+
+    /** Represents a delBookRsp. */
+    class delBookRsp implements IdelBookRsp {
+
+        /**
+         * Constructs a new delBookRsp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: book.IdelBookRsp);
+
+        /** delBookRsp code. */
+        public code: number;
+
+        /** delBookRsp msg. */
+        public msg: string;
+
+        /** delBookRsp data. */
+        public data?: (boolean|null);
+
+        /** delBookRsp _data. */
+        public _data?: "data";
+
+        /**
+         * Creates a new delBookRsp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns delBookRsp instance
+         */
+        public static create(properties?: book.IdelBookRsp): book.delBookRsp;
+
+        /**
+         * Encodes the specified delBookRsp message. Does not implicitly {@link book.delBookRsp.verify|verify} messages.
+         * @param message delBookRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: book.IdelBookRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified delBookRsp message, length delimited. Does not implicitly {@link book.delBookRsp.verify|verify} messages.
+         * @param message delBookRsp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: book.IdelBookRsp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a delBookRsp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns delBookRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): book.delBookRsp;
+
+        /**
+         * Decodes a delBookRsp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns delBookRsp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): book.delBookRsp;
+
+        /**
+         * Verifies a delBookRsp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a delBookRsp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns delBookRsp
+         */
+        public static fromObject(object: { [k: string]: any }): book.delBookRsp;
+
+        /**
+         * Creates a plain object from a delBookRsp message. Also converts values to other types if specified.
+         * @param message delBookRsp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: book.delBookRsp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this delBookRsp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
     }
 }
 
@@ -631,6 +1012,225 @@ export namespace comm {
 
         /**
          * Converts this readerType to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BookInfo. */
+    interface IBookInfo {
+
+        /** BookInfo bkCode */
+        bkCode?: (string|null);
+
+        /** BookInfo bkName */
+        bkName?: (string|null);
+
+        /** BookInfo bkAuthor */
+        bkAuthor?: (string|null);
+
+        /** BookInfo bkPress */
+        bkPress?: (string|null);
+
+        /** BookInfo bkDatePress */
+        bkDatePress?: (string|null);
+
+        /** BookInfo bkISBN */
+        bkISBN?: (string|null);
+
+        /** BookInfo bkCatalog */
+        bkCatalog?: (string|null);
+
+        /** BookInfo bkLanguage */
+        bkLanguage?: (string|null);
+
+        /** BookInfo bkPages */
+        bkPages?: (number|null);
+
+        /** BookInfo bkPrice */
+        bkPrice?: (number|null);
+
+        /** BookInfo bkDateIn */
+        bkDateIn?: (string|null);
+
+        /** BookInfo bkBrief */
+        bkBrief?: (string|null);
+
+        /** BookInfo bkCover */
+        bkCover?: (string|null);
+
+        /** BookInfo bkStatus */
+        bkStatus?: (string|null);
+
+        /** BookInfo bkID */
+        bkID?: (string|null);
+    }
+
+    /** Represents a BookInfo. */
+    class BookInfo implements IBookInfo {
+
+        /**
+         * Constructs a new BookInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: comm.IBookInfo);
+
+        /** BookInfo bkCode. */
+        public bkCode?: (string|null);
+
+        /** BookInfo bkName. */
+        public bkName?: (string|null);
+
+        /** BookInfo bkAuthor. */
+        public bkAuthor?: (string|null);
+
+        /** BookInfo bkPress. */
+        public bkPress?: (string|null);
+
+        /** BookInfo bkDatePress. */
+        public bkDatePress?: (string|null);
+
+        /** BookInfo bkISBN. */
+        public bkISBN?: (string|null);
+
+        /** BookInfo bkCatalog. */
+        public bkCatalog?: (string|null);
+
+        /** BookInfo bkLanguage. */
+        public bkLanguage?: (string|null);
+
+        /** BookInfo bkPages. */
+        public bkPages?: (number|null);
+
+        /** BookInfo bkPrice. */
+        public bkPrice?: (number|null);
+
+        /** BookInfo bkDateIn. */
+        public bkDateIn?: (string|null);
+
+        /** BookInfo bkBrief. */
+        public bkBrief?: (string|null);
+
+        /** BookInfo bkCover. */
+        public bkCover?: (string|null);
+
+        /** BookInfo bkStatus. */
+        public bkStatus?: (string|null);
+
+        /** BookInfo bkID. */
+        public bkID?: (string|null);
+
+        /** BookInfo _bkCode. */
+        public _bkCode?: "bkCode";
+
+        /** BookInfo _bkName. */
+        public _bkName?: "bkName";
+
+        /** BookInfo _bkAuthor. */
+        public _bkAuthor?: "bkAuthor";
+
+        /** BookInfo _bkPress. */
+        public _bkPress?: "bkPress";
+
+        /** BookInfo _bkDatePress. */
+        public _bkDatePress?: "bkDatePress";
+
+        /** BookInfo _bkISBN. */
+        public _bkISBN?: "bkISBN";
+
+        /** BookInfo _bkCatalog. */
+        public _bkCatalog?: "bkCatalog";
+
+        /** BookInfo _bkLanguage. */
+        public _bkLanguage?: "bkLanguage";
+
+        /** BookInfo _bkPages. */
+        public _bkPages?: "bkPages";
+
+        /** BookInfo _bkPrice. */
+        public _bkPrice?: "bkPrice";
+
+        /** BookInfo _bkDateIn. */
+        public _bkDateIn?: "bkDateIn";
+
+        /** BookInfo _bkBrief. */
+        public _bkBrief?: "bkBrief";
+
+        /** BookInfo _bkCover. */
+        public _bkCover?: "bkCover";
+
+        /** BookInfo _bkStatus. */
+        public _bkStatus?: "bkStatus";
+
+        /** BookInfo _bkID. */
+        public _bkID?: "bkID";
+
+        /**
+         * Creates a new BookInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BookInfo instance
+         */
+        public static create(properties?: comm.IBookInfo): comm.BookInfo;
+
+        /**
+         * Encodes the specified BookInfo message. Does not implicitly {@link comm.BookInfo.verify|verify} messages.
+         * @param message BookInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: comm.IBookInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BookInfo message, length delimited. Does not implicitly {@link comm.BookInfo.verify|verify} messages.
+         * @param message BookInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: comm.IBookInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BookInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BookInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): comm.BookInfo;
+
+        /**
+         * Decodes a BookInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BookInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): comm.BookInfo;
+
+        /**
+         * Verifies a BookInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BookInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BookInfo
+         */
+        public static fromObject(object: { [k: string]: any }): comm.BookInfo;
+
+        /**
+         * Creates a plain object from a BookInfo message. Also converts values to other types if specified.
+         * @param message BookInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: comm.BookInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BookInfo to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
