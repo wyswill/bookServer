@@ -123,7 +123,7 @@ export namespace book {
         /**
          * Calls addBookInfo.
          * @param request BookInfo message or plain object
-         * @param callback Node-style callback called with the error, if any, and addBookInfoRsp
+         * @param callback Node-style callback called with the error, if any, and delBookRsp
          */
         public addBookInfo(request: comm.IBookInfo, callback: book.book_service.addBookInfoCallback): void;
 
@@ -132,7 +132,7 @@ export namespace book {
          * @param request BookInfo message or plain object
          * @returns Promise
          */
-        public addBookInfo(request: comm.IBookInfo): Promise<book.addBookInfoRsp>;
+        public addBookInfo(request: comm.IBookInfo): Promise<book.delBookRsp>;
 
         /**
          * Calls delBook.
@@ -231,9 +231,9 @@ export namespace book {
         /**
          * Callback as used by {@link book.book_service#addBookInfo}.
          * @param error Error, if any
-         * @param [response] addBookInfoRsp
+         * @param [response] delBookRsp
          */
-        type addBookInfoCallback = (error: (Error|null), response?: book.addBookInfoRsp) => void;
+        type addBookInfoCallback = (error: (Error|null), response?: book.delBookRsp) => void;
 
         /**
          * Callback as used by {@link book.book_service#delBook}.
@@ -363,7 +363,7 @@ export namespace book {
     interface IqueryBookById {
 
         /** queryBookById bkID */
-        bkID: string;
+        bkID: number;
     }
 
     /** Represents a queryBookById. */
@@ -376,7 +376,7 @@ export namespace book {
         constructor(properties?: book.IqueryBookById);
 
         /** queryBookById bkID. */
-        public bkID: string;
+        public bkID: number;
 
         /**
          * Creates a new queryBookById instance using the specified properties.
@@ -1042,7 +1042,7 @@ export namespace comm {
         bkCatalog?: (string|null);
 
         /** BookInfo bkLanguage */
-        bkLanguage?: (string|null);
+        bkLanguage?: (comm.BookInfo.BKLANGUAGE|null);
 
         /** BookInfo bkPages */
         bkPages?: (number|null);
@@ -1060,10 +1060,10 @@ export namespace comm {
         bkCover?: (string|null);
 
         /** BookInfo bkStatus */
-        bkStatus?: (string|null);
+        bkStatus?: (comm.BookInfo.BKSTATUS|null);
 
         /** BookInfo bkID */
-        bkID?: (string|null);
+        bkID?: (number|null);
     }
 
     /** Represents a BookInfo. */
@@ -1097,7 +1097,7 @@ export namespace comm {
         public bkCatalog?: (string|null);
 
         /** BookInfo bkLanguage. */
-        public bkLanguage?: (string|null);
+        public bkLanguage?: (comm.BookInfo.BKLANGUAGE|null);
 
         /** BookInfo bkPages. */
         public bkPages?: (number|null);
@@ -1115,10 +1115,10 @@ export namespace comm {
         public bkCover?: (string|null);
 
         /** BookInfo bkStatus. */
-        public bkStatus?: (string|null);
+        public bkStatus?: (comm.BookInfo.BKSTATUS|null);
 
         /** BookInfo bkID. */
-        public bkID?: (string|null);
+        public bkID?: (number|null);
 
         /** BookInfo _bkCode. */
         public _bkCode?: "bkCode";
@@ -1234,6 +1234,28 @@ export namespace comm {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+
+    namespace BookInfo {
+
+        /** BKLANGUAGE enum. */
+        enum BKLANGUAGE {
+            cn = 1,
+            en = 2,
+            jp = 3,
+            ra = 4,
+            je = 5,
+            fr = 6
+        }
+
+        /** BKSTATUS enum. */
+        enum BKSTATUS {
+            in = 1,
+            out = 2,
+            lost = 3,
+            sole = 4,
+            destroy = 5
+        }
     }
 }
 

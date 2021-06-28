@@ -14,7 +14,7 @@ service book_service {
   rpc addReaderTypeById (user.addReaderTypeByIdReq) returns (user.queryUserByIdRsp);
   rpc modiReaderTypeByid (user.modiReaderTypeByidReq) returns (user.queryUserByIdRsp);
 //图书管理
-  rpc addBookInfo (comm.BookInfo) returns (addBookInfoRsp);
+  rpc addBookInfo (comm.BookInfo) returns (delBookRsp);
   rpc delBook (queryBookById) returns (delBookRsp);
   rpc findBoookById (queryBookById) returns (addBookInfoRsp);
   rpc modiBookInfo (comm.BookInfo) returns (addBookInfoRsp);
@@ -26,7 +26,7 @@ message addBookInfoRsp {
   required comm.BookInfo data=3;
 }
 message queryBookById {
-  required string bkID=1;
+  required int32 bkID=1;
 }
 message delBookRsp {
   required int32 code=1;

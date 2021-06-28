@@ -41,6 +41,21 @@ message readerType {
 // 图书信息
 
 message BookInfo {
+  enum BKLANGUAGE {
+    cn=1;//中文
+    en=2;//英文
+    jp=3;//日文
+    ra=4;//俄文
+    je=5;//德文
+    fr=6;//法文
+  }
+  enum BKSTATUS {
+    in=1;//在馆
+    out=2;//借出
+    lost=3;//遗失
+    sole=4;//变卖
+    destroy=5;//销毁
+  }
   optional string bkCode=1;//图书编号或条码号（前文中的书号）
   optional string bkName=2;//书名
   optional string bkAuthor=3;//作者
@@ -48,12 +63,12 @@ message BookInfo {
   optional string bkDatePress=5;//出版日期
   optional string bkISBN=6;//ISBN 书号
   optional string bkCatalog=7;//分类号（如：TP316-21/123）
-  optional string bkLanguage=8;//语言，0-中文，1-英文，2-日文，3-俄文，4-德文，5-法文
+  optional BKLANGUAGE bkLanguage=8;//语言
   optional int32 bkPages=9;//页数
   optional int32 bkPrice=10;//价格
   optional string bkDateIn=11;//入馆日期
   optional string bkBrief=12;//内容简介
   optional string bkCover=13;//图书封面照片
-  optional string bkStatus=14;//'图书状态，在馆、借出、遗失、变卖、销毁'
-  optional string bkID=15;//图书序号【标识列，主键】
+  optional BKSTATUS bkStatus=14;//'图书状态
+  optional int32 bkID=15;//图书序号【标识列，主键】
 }

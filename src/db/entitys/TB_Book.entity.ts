@@ -1,3 +1,4 @@
+import { comm } from '@src/rpc/bundle';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -40,7 +41,7 @@ export class TB_Book {
   bkCatalog: string;
   @Column({
     type: 'enum',
-    enum: [0, 1, 2, 3, 4, 5],
+    enum: comm.BookInfo.BKLANGUAGE,
     comment: '语言，0-中文，1-英文，2-日文，3-俄文，4-德文，5-法文',
   })
   bkLanguage: string;
@@ -56,7 +57,7 @@ export class TB_Book {
   bkCover: string;
   @Column({
     type: 'enum',
-    enum: ['在馆', '借出', '遗失', '变卖', '销毁'],
+    enum:comm.BookInfo.BKSTATUS,
     comment: '图书状态，在馆、借出、遗失、变卖、销毁',
   })
   bkStatus: string;

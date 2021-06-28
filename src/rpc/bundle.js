@@ -299,7 +299,7 @@ $root.book = (function() {
          * @typedef addBookInfoCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {book.addBookInfoRsp} [response] addBookInfoRsp
+         * @param {book.delBookRsp} [response] delBookRsp
          */
 
         /**
@@ -308,12 +308,12 @@ $root.book = (function() {
          * @memberof book.book_service
          * @instance
          * @param {comm.IBookInfo} request BookInfo message or plain object
-         * @param {book.book_service.addBookInfoCallback} callback Node-style callback called with the error, if any, and addBookInfoRsp
+         * @param {book.book_service.addBookInfoCallback} callback Node-style callback called with the error, if any, and delBookRsp
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(book_service.prototype.addBookInfo = function addBookInfo(request, callback) {
-            return this.rpcCall(addBookInfo, $root.comm.BookInfo, $root.book.addBookInfoRsp, request, callback);
+            return this.rpcCall(addBookInfo, $root.comm.BookInfo, $root.book.delBookRsp, request, callback);
         }, "name", { value: "addBookInfo" });
 
         /**
@@ -322,7 +322,7 @@ $root.book = (function() {
          * @memberof book.book_service
          * @instance
          * @param {comm.IBookInfo} request BookInfo message or plain object
-         * @returns {Promise<book.addBookInfoRsp>} Promise
+         * @returns {Promise<book.delBookRsp>} Promise
          * @variation 2
          */
 
@@ -672,7 +672,7 @@ $root.book = (function() {
          * Properties of a queryBookById.
          * @memberof book
          * @interface IqueryBookById
-         * @property {string} bkID queryBookById bkID
+         * @property {number} bkID queryBookById bkID
          */
 
         /**
@@ -692,11 +692,11 @@ $root.book = (function() {
 
         /**
          * queryBookById bkID.
-         * @member {string} bkID
+         * @member {number} bkID
          * @memberof book.queryBookById
          * @instance
          */
-        queryBookById.prototype.bkID = "";
+        queryBookById.prototype.bkID = 0;
 
         /**
          * Creates a new queryBookById instance using the specified properties.
@@ -722,7 +722,7 @@ $root.book = (function() {
         queryBookById.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.bkID);
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.bkID);
             return writer;
         };
 
@@ -758,7 +758,7 @@ $root.book = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.bkID = reader.string();
+                    message.bkID = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -797,8 +797,8 @@ $root.book = (function() {
         queryBookById.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (!$util.isString(message.bkID))
-                return "bkID: string expected";
+            if (!$util.isInteger(message.bkID))
+                return "bkID: integer expected";
             return null;
         };
 
@@ -815,7 +815,7 @@ $root.book = (function() {
                 return object;
             var message = new $root.book.queryBookById();
             if (object.bkID != null)
-                message.bkID = String(object.bkID);
+                message.bkID = object.bkID | 0;
             return message;
         };
 
@@ -833,7 +833,7 @@ $root.book = (function() {
                 options = {};
             var object = {};
             if (options.defaults)
-                object.bkID = "";
+                object.bkID = 0;
             if (message.bkID != null && message.hasOwnProperty("bkID"))
                 object.bkID = message.bkID;
             return object;
@@ -2469,14 +2469,14 @@ $root.comm = (function() {
          * @property {string|null} [bkDatePress] BookInfo bkDatePress
          * @property {string|null} [bkISBN] BookInfo bkISBN
          * @property {string|null} [bkCatalog] BookInfo bkCatalog
-         * @property {string|null} [bkLanguage] BookInfo bkLanguage
+         * @property {comm.BookInfo.BKLANGUAGE|null} [bkLanguage] BookInfo bkLanguage
          * @property {number|null} [bkPages] BookInfo bkPages
          * @property {number|null} [bkPrice] BookInfo bkPrice
          * @property {string|null} [bkDateIn] BookInfo bkDateIn
          * @property {string|null} [bkBrief] BookInfo bkBrief
          * @property {string|null} [bkCover] BookInfo bkCover
-         * @property {string|null} [bkStatus] BookInfo bkStatus
-         * @property {string|null} [bkID] BookInfo bkID
+         * @property {comm.BookInfo.BKSTATUS|null} [bkStatus] BookInfo bkStatus
+         * @property {number|null} [bkID] BookInfo bkID
          */
 
         /**
@@ -2552,7 +2552,7 @@ $root.comm = (function() {
 
         /**
          * BookInfo bkLanguage.
-         * @member {string|null|undefined} bkLanguage
+         * @member {comm.BookInfo.BKLANGUAGE|null|undefined} bkLanguage
          * @memberof comm.BookInfo
          * @instance
          */
@@ -2600,7 +2600,7 @@ $root.comm = (function() {
 
         /**
          * BookInfo bkStatus.
-         * @member {string|null|undefined} bkStatus
+         * @member {comm.BookInfo.BKSTATUS|null|undefined} bkStatus
          * @memberof comm.BookInfo
          * @instance
          */
@@ -2608,7 +2608,7 @@ $root.comm = (function() {
 
         /**
          * BookInfo bkID.
-         * @member {string|null|undefined} bkID
+         * @member {number|null|undefined} bkID
          * @memberof comm.BookInfo
          * @instance
          */
@@ -2821,7 +2821,7 @@ $root.comm = (function() {
             if (message.bkCatalog != null && Object.hasOwnProperty.call(message, "bkCatalog"))
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.bkCatalog);
             if (message.bkLanguage != null && Object.hasOwnProperty.call(message, "bkLanguage"))
-                writer.uint32(/* id 8, wireType 2 =*/66).string(message.bkLanguage);
+                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.bkLanguage);
             if (message.bkPages != null && Object.hasOwnProperty.call(message, "bkPages"))
                 writer.uint32(/* id 9, wireType 0 =*/72).int32(message.bkPages);
             if (message.bkPrice != null && Object.hasOwnProperty.call(message, "bkPrice"))
@@ -2833,9 +2833,9 @@ $root.comm = (function() {
             if (message.bkCover != null && Object.hasOwnProperty.call(message, "bkCover"))
                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.bkCover);
             if (message.bkStatus != null && Object.hasOwnProperty.call(message, "bkStatus"))
-                writer.uint32(/* id 14, wireType 2 =*/114).string(message.bkStatus);
+                writer.uint32(/* id 14, wireType 0 =*/112).int32(message.bkStatus);
             if (message.bkID != null && Object.hasOwnProperty.call(message, "bkID"))
-                writer.uint32(/* id 15, wireType 2 =*/122).string(message.bkID);
+                writer.uint32(/* id 15, wireType 0 =*/120).int32(message.bkID);
             return writer;
         };
 
@@ -2892,7 +2892,7 @@ $root.comm = (function() {
                     message.bkCatalog = reader.string();
                     break;
                 case 8:
-                    message.bkLanguage = reader.string();
+                    message.bkLanguage = reader.int32();
                     break;
                 case 9:
                     message.bkPages = reader.int32();
@@ -2910,10 +2910,10 @@ $root.comm = (function() {
                     message.bkCover = reader.string();
                     break;
                 case 14:
-                    message.bkStatus = reader.string();
+                    message.bkStatus = reader.int32();
                     break;
                 case 15:
-                    message.bkID = reader.string();
+                    message.bkID = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -2988,8 +2988,17 @@ $root.comm = (function() {
             }
             if (message.bkLanguage != null && message.hasOwnProperty("bkLanguage")) {
                 properties._bkLanguage = 1;
-                if (!$util.isString(message.bkLanguage))
-                    return "bkLanguage: string expected";
+                switch (message.bkLanguage) {
+                default:
+                    return "bkLanguage: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    break;
+                }
             }
             if (message.bkPages != null && message.hasOwnProperty("bkPages")) {
                 properties._bkPages = 1;
@@ -3018,13 +3027,21 @@ $root.comm = (function() {
             }
             if (message.bkStatus != null && message.hasOwnProperty("bkStatus")) {
                 properties._bkStatus = 1;
-                if (!$util.isString(message.bkStatus))
-                    return "bkStatus: string expected";
+                switch (message.bkStatus) {
+                default:
+                    return "bkStatus: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                }
             }
             if (message.bkID != null && message.hasOwnProperty("bkID")) {
                 properties._bkID = 1;
-                if (!$util.isString(message.bkID))
-                    return "bkID: string expected";
+                if (!$util.isInteger(message.bkID))
+                    return "bkID: integer expected";
             }
             return null;
         };
@@ -3055,8 +3072,32 @@ $root.comm = (function() {
                 message.bkISBN = String(object.bkISBN);
             if (object.bkCatalog != null)
                 message.bkCatalog = String(object.bkCatalog);
-            if (object.bkLanguage != null)
-                message.bkLanguage = String(object.bkLanguage);
+            switch (object.bkLanguage) {
+            case "cn":
+            case 1:
+                message.bkLanguage = 1;
+                break;
+            case "en":
+            case 2:
+                message.bkLanguage = 2;
+                break;
+            case "jp":
+            case 3:
+                message.bkLanguage = 3;
+                break;
+            case "ra":
+            case 4:
+                message.bkLanguage = 4;
+                break;
+            case "je":
+            case 5:
+                message.bkLanguage = 5;
+                break;
+            case "fr":
+            case 6:
+                message.bkLanguage = 6;
+                break;
+            }
             if (object.bkPages != null)
                 message.bkPages = object.bkPages | 0;
             if (object.bkPrice != null)
@@ -3067,10 +3108,30 @@ $root.comm = (function() {
                 message.bkBrief = String(object.bkBrief);
             if (object.bkCover != null)
                 message.bkCover = String(object.bkCover);
-            if (object.bkStatus != null)
-                message.bkStatus = String(object.bkStatus);
+            switch (object.bkStatus) {
+            case "in":
+            case 1:
+                message.bkStatus = 1;
+                break;
+            case "out":
+            case 2:
+                message.bkStatus = 2;
+                break;
+            case "lost":
+            case 3:
+                message.bkStatus = 3;
+                break;
+            case "sole":
+            case 4:
+                message.bkStatus = 4;
+                break;
+            case "destroy":
+            case 5:
+                message.bkStatus = 5;
+                break;
+            }
             if (object.bkID != null)
-                message.bkID = String(object.bkID);
+                message.bkID = object.bkID | 0;
             return message;
         };
 
@@ -3123,7 +3184,7 @@ $root.comm = (function() {
                     object._bkCatalog = "bkCatalog";
             }
             if (message.bkLanguage != null && message.hasOwnProperty("bkLanguage")) {
-                object.bkLanguage = message.bkLanguage;
+                object.bkLanguage = options.enums === String ? $root.comm.BookInfo.BKLANGUAGE[message.bkLanguage] : message.bkLanguage;
                 if (options.oneofs)
                     object._bkLanguage = "bkLanguage";
             }
@@ -3153,7 +3214,7 @@ $root.comm = (function() {
                     object._bkCover = "bkCover";
             }
             if (message.bkStatus != null && message.hasOwnProperty("bkStatus")) {
-                object.bkStatus = message.bkStatus;
+                object.bkStatus = options.enums === String ? $root.comm.BookInfo.BKSTATUS[message.bkStatus] : message.bkStatus;
                 if (options.oneofs)
                     object._bkStatus = "bkStatus";
             }
@@ -3175,6 +3236,48 @@ $root.comm = (function() {
         BookInfo.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * BKLANGUAGE enum.
+         * @name comm.BookInfo.BKLANGUAGE
+         * @enum {number}
+         * @property {number} cn=1 cn value
+         * @property {number} en=2 en value
+         * @property {number} jp=3 jp value
+         * @property {number} ra=4 ra value
+         * @property {number} je=5 je value
+         * @property {number} fr=6 fr value
+         */
+        BookInfo.BKLANGUAGE = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "cn"] = 1;
+            values[valuesById[2] = "en"] = 2;
+            values[valuesById[3] = "jp"] = 3;
+            values[valuesById[4] = "ra"] = 4;
+            values[valuesById[5] = "je"] = 5;
+            values[valuesById[6] = "fr"] = 6;
+            return values;
+        })();
+
+        /**
+         * BKSTATUS enum.
+         * @name comm.BookInfo.BKSTATUS
+         * @enum {number}
+         * @property {number} in=1 in value
+         * @property {number} out=2 out value
+         * @property {number} lost=3 lost value
+         * @property {number} sole=4 sole value
+         * @property {number} destroy=5 destroy value
+         */
+        BookInfo.BKSTATUS = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "in"] = 1;
+            values[valuesById[2] = "out"] = 2;
+            values[valuesById[3] = "lost"] = 3;
+            values[valuesById[4] = "sole"] = 4;
+            values[valuesById[5] = "destroy"] = 5;
+            return values;
+        })();
 
         return BookInfo;
     })();

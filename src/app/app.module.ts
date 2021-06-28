@@ -1,3 +1,4 @@
+import { BookAdminModule } from './../book-admin/book-admin.module';
 /*
  * @LastEditors: wyswill
  * @Description:
@@ -11,7 +12,7 @@ import { UserModule } from '@src/user/user.module';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [RpcQueryModule, DbModule, UserModule],
+  imports: [RpcQueryModule, DbModule, UserModule, BookAdminModule],
   controllers: [],
   providers: [AppService],
 })
